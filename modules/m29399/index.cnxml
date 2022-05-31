@@ -1,0 +1,928 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Graphs</title>
+  <metadata>
+  <md:content-id>m29399</md:content-id><md:title>Graphs</md:title>
+  <md:abstract/>
+  <md:uuid>d8f780f1-eab6-4f4e-a1a4-fcb460afb861</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-94536029177">
+      <title>7. Graphs</title>
+      <section id="id-575553638433">
+        <title>7.1. Graph theory</title>
+        <para id="id3347976">(From Wikipedia, the free encyclopedia)</para>
+        <figure id="id3347989"><media id="id1166975804954" alt=""><image src="../../media/Picture 1-7076.png" mime-type="image/png" height="113" width="171"/></media>
+        <caption>A drawing of a graph</caption></figure>
+        
+        <para id="id3348017">In mathematics and computer science, graph theory is the study of graphs; mathematical structures used to model pairwise relations between objects from a certain collection. A "graph" in this context refers to a collection of vertices or 'nodes' and a collection of edges that connect pairs of vertices. A graph may be undirected, meaning that there is no distinction between the two vertices associated with each edge, or its edges may be directed from one vertex to another; see graph (mathematics) for more detailed definitions and for other variations in the types of graphs that are commonly considered. The graphs studied in graph theory should not be confused with "graphs of functions" and other kinds of graphs.</para>
+        <para id="id3348078">History</para>
+        <para id="id3348090">The paper written by Leonhard Euler on the Seven Bridges of Königsberg and published in 1736 is regarded as the first paper in the history of graph theory. This paper, as well as the one written by Vandermonde on the knight problem carried on with the analysis situs initiated by Leibniz. Euler's formula relating the number of edges, vertices, and faces of a convex polyhedron was studied and generalized by Cauchy and L'Huillier, and is at the origin of topology.</para>
+        <para id="id3348130">More than one century after Euler's paper on the bridges of Königsberg and while Listing introduced topology, Cayley was led by the study of particular analytical forms arising from differential calculus to study a particular class of graphs, the trees. This study had many implications in theoretical chemistry. The involved techniques mainly concerned the enumeration of graphs having particular properties. Enumerative graph theory then rose from the results of Cayley and the fundamental results published by Pólya between 1935 and 1937 and the generalization of these by De Bruijn in 1959. Cayley linked his results on trees with the contemporary studies of chemical composition. The fusion of the ideas coming from mathematics with those coming from chemistry is at the origin of a part of the standard terminology of graph theory. In particular, the term graph was introduced by Sylvester in a paper published in 1878 in Nature.</para>
+        <para id="id3348191">One of the most famous and productive problems of graph theory is the four color problem: "Is it true that any map drawn in the plane may have its regions colored with four colors, in such a way that any two regions having a common border have different colors?". This problem remained unsolved for more than a century and the proof given by Kenneth Appel and Wolfgang Haken in 1976 (determination of 1936 types of configurations of which study is sufficient and checking of the properties of these configurations by computer) did not convince all the community. A simpler proof considering far fewer configurations was given twenty years later by Robertson, Seymour, Sanders and Thomas.</para>
+        <para id="id3348207">This problem was first posed by Francis Guthrie in 1852 and the first written record of this problem is a letter of De Morgan addressed to Hamilton the same year. Many incorrect proofs have been proposed, including those by Cayley, Kempe, and others. The study and the generalization of this problem by Tait, Heawood, Ramsey and Hadwiger has in particular led to the study of the colorings of the graphs embedded on surfaces with arbitrary genus. Tait's reformulation generated a new class of problems, the factorization problems, particularly studied by Petersen and Kőnig. The works of Ramsey on colorations and more specially the results obtained by Turán in 1941 is at the origin of another branch of graph theory, the extremal graph theory.</para>
+        <para id="id3348247">The autonomous development of topology from 1860 and 1930 fertilized graph theory back through the works of Jordan, Kuratowski and Whitney. Another important factor of common development of graph theory and topology came from the use of the techniques of modern algebra. The first example of such a use comes from the work of the physicist Gustav Kirchhoff, who published in 1845 his Kirchhoff's circuit laws for calculating the voltage and current in electric circuits.</para>
+        <para id="id3348259">The introduction of probabilistic methods in graph theory, specially in the study of Erdős and Rényi of the asymptotic probability of graph connexity is at the origin of yet another branch, known as random graph theory. Research in this branch has enabled mathematicians across the globe to advance the theory of graphs significantly.</para>
+        <para id="id3348284">Drawing graphs</para>
+        <para id="id3348295">Graphs are represented graphically by drawing a dot for every vertex, and drawing an arc between two vertices if they are connected by an edge. If the graph is directed, the direction is indicated by drawing an arrow.</para>
+        <para id="id3348303">A graph drawing should not be confused with the graph itself (the abstract, non-graphical structure) as there are several ways to structure the graph drawing. All that matters is which vertices are connected to which others by how many edges and not the exact layout. In practice it is often difficult to decide if two drawings represent the same graph. Depending on the problem domain some layouts may be better suited and easier to understand than others.</para>
+        <para id="id3348315">Graph-theoretic data structures</para>
+        <para id="id3348325">There are different ways to store graphs in a computer system. The data structure used depends on both the graph structure and the algorithm used for manipulating the graph. Theoretically one can distinguish between list and matrix structures but in concrete applications the best structure is often a combination of both. List structures are often preferred for sparse graphs as they have smaller memory requirements. Matrix structures on the other hand provide faster access for some applications but can consume huge amounts of memory .</para>
+        <para id="id3348339">List structures</para>
+        <list id="id3348350" list-type="bulleted">
+          <item>Incidence list - The edges are represented by an array containing pairs (ordered if directed) of vertices (that the edge connects) and possibly weight and other data.</item>
+        </list>
+        <list id="id3348369" list-type="bulleted">
+          <item>Adjacency list - Much like the incidence list, each vertex has a list of which vertices it is adjacent to. This causes redundancy in an undirected graph: for example, if vertices A and B are adjacent, A's adjacency list contains B, while B's list contains A. Adjacency queries are faster, at the cost of extra storage space.</item>
+        </list>
+        <para id="id3348390">Matrix structures</para>
+        <list id="id3348402" list-type="bulleted">
+          <item>Incidence matrix - The graph is represented by a matrix of E (edges) by V (vertices), where [edge, vertex] contains the edge's data (simplest case: 1 - connected, 0 - not connected).</item>
+        </list>
+        <list id="id3348421" list-type="bulleted">
+          <item>Adjacency matrix - there is an N by N matrix, where N is the number of vertices in the graph. If there is an edge from some vertex x to some vertex y, then the element Mx,y is 1, otherwise it is 0. This makes it easier to find subgraphs, and to reverse graphs if needed.</item>
+        </list>
+        <list id="id3348462" list-type="bulleted">
+          <item>Laplacian matrix or Kirchhoff matrix or Admittance matrix - is defined as degree matrix minus adjacency matrix and thus contains adjacency information and degree information about the vertices</item>
+        </list>
+        <list id="id3348498" list-type="bulleted">
+          <item>Distance matrix - A symmetric N by N matrix an element Mx,y of which is the length of shortest path between x and y; if there is no such path Mx,y = infinity. It can be derived from powers of the Adjacency matrix.</item>
+        </list>
+        <para id="id3348567">Problems in graph theory</para>
+        <para id="id3348579">Enumeration</para>
+        <para id="id3348590">There is a large literature on graphical enumeration: the problem of counting graphs meeting specified conditions. Some of this work is found in Harary and Palmer (1973).</para>
+        <para id="id3348597">Subgraphs, induced subgraphs, and minors</para>
+        <para id="id3348609">A common problem, called the subgraph isomorphism problem, is finding a fixed graph as a subgraph in a given graph. One reason to be interested in such a question is that many graph properties are hereditary for subgraphs, which means that a graph has the property if and only if all subgraphs, or all induced subgraphs, have it too. Unfortunately, finding maximal subgraphs of a certain kind is often an NP-complete problem.</para>
+        <list id="id3348632" list-type="bulleted">
+          <item>Finding the largest complete graph is called the clique problem (NP-complete).</item>
+        </list>
+        <para id="id3348642">A similar problem is finding induced subgraphs in a given graph. Again, some important graph properties are hereditary with respect to induced subgraphs, which means that a graph has a property if and only if all induced subgraphs also have it. Finding maximal induced subgraphs of a certain kind is also often NP-complete. For example,</para>
+        <list id="id3348652" list-type="bulleted">
+          <item>Finding the largest edgeless induced subgraph, or independent set, called the independent set problem (NP-complete).</item>
+        </list>
+        <para id="id3348662">Still another such problem, the minor containment problem, is to find a fixed graph as a minor of a given graph. A minor or subcontraction of a graph is any graph obtained by taking a subgraph and contracting some (or no) edges. Many graph properties are hereditary for minors, which means that a graph has a property if and only if all minors have it too. A famous example:</para>
+        <list id="id3348692" list-type="bulleted">
+          <item>A graph is planar if it contains as a minor neither the complete bipartite graph K3,3 (See the Three cottage problem) nor the complete graph K5.</item>
+        </list>
+        <para id="id3348731">Another class of problems has to do with the extent to which various species and generalizations of graphs are determined by their point-deleted subgraphs, for example:</para>
+        <list id="id3348750" list-type="bulleted">
+          <item>The reconstruction conjecture</item>
+        </list>
+        <para id="id3348758">Graph coloring</para>
+        <para id="id3348770">Many problems have to do with various ways of coloring graphs, for example:</para>
+        <list id="id3348775" list-type="bulleted">
+          <item>The four-color theorem</item>
+          <item>The strong perfect graph theorem</item>
+          <item>The Erdős-Faber-Lovász conjecture (unsolved)</item>
+          <item>The total coloring conjecture (unsolved)</item>
+          <item>The list coloring conjecture (unsolved)</item>
+        </list>
+        <para id="id3348809">Route problems</para>
+        <list id="id3348820" list-type="bulleted">
+          <item>Hamiltonian path and cycle problems</item>
+          <item>Minimum spanning tree</item>
+          <item>Route inspection problem (also called the "Chinese Postman Problem")</item>
+          <item>Seven Bridges of Königsberg</item>
+          <item>Shortest path problem</item>
+          <item>Steiner tree</item>
+          <item>Three cottage problem</item>
+          <item>Traveling salesman problem (NP-Complete)</item>
+        </list>
+        <para id="id3348870">Network flow</para>
+        <para id="id3348882">There are numerous problems arising especially from applications that have to do with various notions of flows in networks, for example:</para>
+        <para id="id3348888">Visibility graph problems</para>
+        <list id="id3348893" list-type="bulleted">
+          <item>Museum guard problem</item>
+        </list>
+        <para id="id3348902">Covering problems</para>
+        <para id="id3348913">Covering problems are specific instances of subgraph-finding problems, and they tend to be closely related to the clique problem or the independent set problem.</para>
+        <list id="id3348920" list-type="bulleted">
+          <item>Set cover problem</item>
+          <item>Vertex cover problem</item>
+        </list>
+        <para id="id3348935">Applications</para>
+        <para id="id3348940">Applications of graph theory are primarily, but not exclusively, concerned with labeled graphs and various specializations of these.</para>
+        <para id="id3348946">Structures that can be represented as graphs are ubiquitous, and many problems of practical interest can be represented by graphs. The link structure of a website could be represented by a directed graph: the vertices are the web pages available at the website and a directed edge from page A to page B exists if and only if A contains a link to B. A similar approach can be taken to problems in travel, biology, computer chip design, and many other fields. The development of algorithms to handle graphs is therefore of major interest in computer science.</para>
+        <para id="id3348996">A graph structure can be extended by assigning a weight to each edge of the graph. Graphs with weights, or weighted graphs, are used to represent structures in which pairwise connections have some numerical values. For example if a graph represents a road network, the weights could represent the length of each road. A digraph with weighted edges in the context of graph theory is called a network.</para>
+        <para id="id3349007">Networks have many uses in the practical side of graph theory, network analysis (for example, to model and analyze traffic networks). Within network analysis, the definition of the term "network" varies, and may often refer to a simple graph.</para>
+        <para id="id3349015">Many applications of graph theory exist in the form of network analysis. These split broadly into two categories. Firstly, analysis to determine structural properties of a network, such as the distribution of vertex degrees and the diameter of the graph. A vast number of graph measures exist, and the production of useful ones for various domains remains an active area of research. Secondly, analysis to find a measurable quantity within the network, for example, for a transportation network, the level of vehicular flow within any portion of it.</para>
+        <para id="id3349029">Graph theory is also used to study molecules in chemistry and physics. In condensed matter physics, the three dimensional structure of complicated simulated atomic structures can be studied quantitatively by gathering statistics on graph-theoretic properties related to the topology of the atoms. For example, Franzblau's shortest-path (SP) rings.</para>
+        <para id="id3349039">Graph theory is also widely used in sociology as a way, for example, to measure actors' prestige or to explore diffusion mechanisms, notably through the use of social network analysis software.</para>
+      </section>
+      <section id="id-553533796196">
+        <title>7.2. Minimum spanning trees</title>
+        <section id="id-683718390718">
+          <title>7.2.1. Boruvska’s algorithms</title>
+          <para id="id3349062">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3349073">Borůvka's algorithm is an algorithm for finding a minimum spanning tree in a graph for which all edge weights are distinct.</para>
+          <para id="id3349095">It was first published in 1926 by Otakar Borůvka as a method of constructing an efficient electricity network for Moravia. The algorithm was rediscovered by Choquet in 1938; again by Florek, Łukasiewicz, Perkal, Steinhaus, and Zubrzycki in 1951; and again by Sollin some time in the early 1960s. Because Sollin was the only Western computer scientist in this list, this algorithm is frequently called Sollin's algorithm, especially in the parallel computing literature.</para>
+          <para id="id3349189">The algorithm begins by examining each vertex and adding the cheapest edge from that vertex to another in the graph, without regard to already added edges, and continues joining these groupings in a like manner until a tree spanning all vertices is completed. Designating each vertex or set of connected vertices a "component", pseudocode for Borůvka's algorithm is:</para>
+          <list id="id3349206" list-type="bulleted">
+            <item>Begin with a connected graph G containing edges of distinct weights, and an empty set of edges T</item>
+            <item>While the vertices of G connected by T are disjoint: <list id="id3349257" list-type="bulleted"><item>Begin with an empty set of edges E</item><item>For each component: <list id="id3349278" list-type="bulleted"><item>Begin with an empty set of edges S</item><item>For each vertex in the component: <list id="id3349297" list-type="bulleted"><item>Add the cheapest edge from the vertex in the component to another vertex in a disjoint component to S</item></list></item><item>Add the cheapest edge in S to E</item></list></item><item>Add the resulting set of edges E to T.</item></list></item>
+            <item>The resulting set of edges T is the minimum spanning tree of G</item>
+          </list>
+          <para id="id3349380">Borůvka's algorithm can be shown to run in time O(Elog V), where E is the number of edges, and V is the number of vertices in G.</para>
+          <para id="id3349417">Other algorithms for this problem include Prim's algorithm (actually discovered by Vojtěch Jarník) and Kruskal's algorithm. Faster algorithms can be obtained by combining Prim's algorithm with Borůvka's. A faster randomized version of Borůvka's algorithm due to Karger, Klein, and Tarjan runs in expected O(E) time. The best known (deterministic) minimum spanning tree algorithm by Bernard Chazelle is based on Borůvka's and runs in O(E α(V)) time, where α is the inverse of the Ackermann function.</para>
+        </section>
+        <section id="id-499783402189">
+          <title>7.2.2. Kruskal’s algorithms</title>
+          <para id="id3349480">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3349490">Kruskal's algorithm is an algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest (a minimum spanning tree for each connected component). Kruskal's algorithm is an example of a greedy algorithm.</para>
+          <figure id="id3349521"><media id="id8601972" alt=""><image src="../../media/Picture 28.png" mime-type="image/png" height="182" width="259"/></media>
+          <caption>Kruskal's algorithm</caption></figure>
+          <para id="id3349545">It works as follows:</para>
+          <list id="id3349549" list-type="bulleted">
+            <item>create a forest F (a set of trees), where each vertex in the graph is a separate tree</item>
+            <item>create a set S containing all the edges in the graph</item>
+            <item>while S is nonempty <list id="id3349606" list-type="bulleted"><item>remove an edge with minimum weight from S</item><item>if that edge connects two different trees, then add it to the forest, combining two trees into a single tree</item><item>otherwise discard that edge</item></list></item>
+          </list>
+          <para id="id3349633">At the termination of the algorithm, the forest has only one component and forms a minimum spanning tree of the graph.</para>
+          <para id="id3349639">This algorithm first appeared in Proceedings of the American Mathematical Society, pp. 48–50 in 1956, and was written by Joseph Kruskal.</para>
+          <para id="id3349658">Performance</para>
+          <para id="id3349662">Where E is the number of edges in the graph and V is the number of vertices, Kruskal's algorithm can be shown to run in O(E log E) time, or equivalently, O(E log V) time, all with simple data structures. These running times are equivalent because:</para>
+          <list id="id3349741" list-type="bulleted">
+            <item>E is at most V2 and logV2 = 2logV is O(log V).</item>
+            <item>If we ignore isolated vertices, which will each be their own component of the minimum spanning tree anyway, V ≤ 2E, so log V is O(log E).</item>
+          </list>
+          <para id="id3349860">We can achieve this bound as follows: first sort the edges by weight using a comparison sort in O(E log E) time; this allows the step "remove an edge with minimum weight from S" to operate in constant time. Next, we use a disjoint-set data structure to keep track of which vertices are in which components. We need to perform O(E) operations, two 'find' operations and possibly one union for each edge. Even a simple disjoint-set data structure such as disjoint-set forests with union by rank can perform O(E) operations in O(E log V) time. Thus the total time is O(E log E) = O(E log V).</para>
+          <para id="id3350002">Provided that the edges are either already sorted or can be sorted in linear time (for example with counting sort or radix sort), the algorithm can use more sophisticated disjoint-set data structures to run in O(E α(V)) time, where α is the extremely slowly-growing inverse of the single-valued Ackermann function.</para>
+          <para id="id3350041">Example</para>
+          <table id="id3350046" summary="">
+            <tgroup cols="2">
+              <colspec colnum="1" colname="c1"/>
+              <colspec colnum="2" colname="c2"/>
+              <tbody>
+                <row>
+                  <entry>
+                    <media id="id6265379" alt=""><image src="../../media/Picture 31.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>This is our original graph. The numbers near the arcs indicate their weight. None of the arcs are highlighted.</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id6629739" alt=""><image src="../../media/Picture 32.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>AD and CE are the shortest arcs, with length 5, and AD has been arbitrarily chosen, so it is highlighted.</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id6110877" alt=""><image src="../../media/Picture 33.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>However, CE is now the shortest arc that does not form a loop, with length 5, so it is highlighted as the second arc.</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id9080686" alt=""><image src="../../media/Picture 34.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>The next arc, DF with length 6, is highlighted using much the same method.</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id1166973437508" alt=""><image src="../../media/Picture 35.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>The next-shortest arcs are AB and BE, both with length 7. AB is chosen arbitrarily, and is highlighted. The arc BD has been highlighted in red, because it would form a loop ABD if it were chosen.</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id1166975445841" alt=""><image src="../../media/Picture 36.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>The process continutes to highlight the next-smallest arc, BE with length 7. Many more arcs are highlighted in red at this stage: BC because it would form the loop BCE, DE because it would form the loop DEBA, and FE because it would form FEBAD.</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id9099692" alt=""><image src="../../media/Picture 37.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>Finally, the process finishes with the arc EG of length 9, and the minimum spanning tree is found.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para id="id3350559">Proof of correctness</para>
+          <para id="id3350564">Let P be a connected, weighted graph and let Y be the subgraph of P produced by the algorithm. Y cannot have a cycle, since the last edge added to that cycle would have been within one subtree and not between two different trees. Y cannot be disconnected, since the first encountered edge that joins two components of Y would have been added by the algorithm. Thus, Y is a spanning tree of P.</para>
+          <para id="id3350644">It remains to show that the spanning tree Y is minimal:</para>
+          <para id="id3350661">Let Y1 be a minimum spanning tree. If Y = Y1 then Y is a minimum spanning tree. Otherwise, let e be the first edge considered by the algorithm that is in Y but not in Y1. <media id="id1166971298255" alt=""><image src="../../media/Picture 38.png" mime-type="image/png" height="14" width="41"/></media> has a cycle, because you cannot add an edge to a spanning tree and still have a tree. This cycle contains another edge f which at the stage of the algorithm where e is added to Y, has not been considered. This is because otherwise e would not connect different trees but two branches of the same tree. Then <media id="id1166973336764" alt=""><image src="../../media/Picture 39.png" mime-type="image/png" height="17" width="109"/></media>is also a spanning tree. Its total weight is less than or equal to the total weight of Y1. This is because the algorithm visits e before f and therefore <media id="id2918517" alt=""><image src="../../media/Picture 40.png" mime-type="image/png" height="15" width="78"/></media>. If the weights are equal, we consider the next edge e which is in Y but not in Y1. If there is no edge left, the weight of Y is equal to the weight of Y1 although they consist of a different edge set and Y is also a minimum spanning tree. In the case where the weight of Y2 is less than the weight of Y1 we can conclude that Y1 is not a minimum spanning tree, and the assumption that there exist edges e, f with w(e) &lt; w(f) is incorrect. And therefore Y is a minimum spanning tree (equal to Y1 or with a different edge set, but with same weight).</para>
+          <para id="id3351081">Pseudocode</para>
+          <para id="id3351085">1 function Kruskal(G)</para>
+          <para id="id3351112">2 for each vertex v in G do</para>
+          <para id="id3351150">3 Define an elementary cluster C(v) ← {v}.</para>
+          <para id="id3351188">4 Initialize a priority queue Q to contain all edges in G, using the weights as keys.</para>
+          <para id="id3351218">5 Define a tree T ← Ø //T will ultimately contain the edges of the MST</para>
+          <para id="id3351253">6 // n is total number of vertices</para>
+          <para id="id3351263">7 while T has fewer than n-1 edges do</para>
+          <para id="id3351304">8 // edge u,v is the minimum weighted route from/to v</para>
+          <para id="id3351315">9 (u,v) ← Q.removeMin()</para>
+          <para id="id3351353">10 // prevent cycles in T. add u,v only if T does not already contain an edge consisting of u and v. </para>
+          <para id="id3351363">11 // Note that the cluster contains more than one vertex only if an edge containing a pair of</para>
+          <para id="id3351373">12 // the vertices has been added to the tree.</para>
+          <para id="id3351382">13 Let C(v) be the cluster containing v, and let C(u) be the cluster containing u.</para>
+          <para id="id3351443">14 if C(v) ≠ C(u) then</para>
+          <para id="id3351500">15 Add edge (v,u) to T.</para>
+          <para id="id3351537">16 Merge C(v) and C(u) into one cluster, that is, union C(v) and C(u).</para>
+          <para id="id3351615">17 return tree T</para>
+        </section>
+        <section id="id-26581010849">
+          <title>7.2.3. Jarnik-Prim’s algorithms</title>
+          <para id="id3351648">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3351658">Prim's algorithm is an algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. The algorithm was discovered in 1930 by mathematician Vojtěch Jarník and later independently by computer scientist Robert C. Prim in 1957 and rediscovered by Dijkstra in 1959. Therefore it is sometimes called the DJP algorithm or Jarnik algorithm.</para>
+          <para id="id3351703">Description</para>
+          <para id="id3351707">The algorithm continuously increases the size of a tree starting with a single vertex until it spans all the vertices.</para>
+          <list id="id3351713" list-type="bulleted">
+            <item>Input: A connected weighted graph G(V,E)</item>
+            <item>Initialize: V' = {x}, where x is an arbitrary node from V, E'= {}</item>
+            <item>repeat until V'=V: <list id="id3351735" list-type="bulleted"><item>Choose edge (u,v) from E with minimal weight such that u is in V' and v is not in V' (if there are multiple edges with the same weight, choose arbitrarily)</item><item>Add v to V', add (u,v) to E'</item></list></item>
+            <item>Output: G(V',E') is the minimal spanning tree</item>
+          </list>
+          <para id="id3351755">Time complexity</para>
+          <table id="id3351766" summary="">
+            <tgroup cols="2">
+              <colspec colnum="1" colname="c1"/>
+              <colspec colnum="2" colname="c2"/>
+              <tbody>
+                <row>
+                  <entry>Minimum edge weight data structure</entry>
+                  <entry>Time complexity (total)</entry>
+                </row>
+                <row>
+                  <entry>adjacency matrix, searching</entry>
+                  <entry>V^2</entry>
+                </row>
+                <row>
+                  <entry>binary heap (as in pseudocode below) and adjacency list</entry>
+                  <entry>O((V + E) log(V)) = E log(V)</entry>
+                </row>
+                <row>
+                  <entry>Fibonacci heap and adjacency list</entry>
+                  <entry>E + V log(V)</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para id="id3351872">A simple implementation using an adjacency matrix graph representation and searching an array of weights to find the minimum weight edge to add requires O(V^2) running time. Using a simple binary heap data structure and an adjacency list representation, Prim's algorithm can be shown to run in time which is O(Elog V) where E is the number of edges and V is the number of vertices. Using a more sophisticated Fibonacci heap, this can be brought down to O(E + Vlog V), which is significantly faster when the graph is dense enough that E is Ω(Vlog V).</para>
+          <para id="id3351964">Example</para>
+          <table id="id3351975" summary="">
+            <tgroup cols="5">
+              <colspec colnum="1" colname="c1"/>
+              <colspec colnum="2" colname="c2"/>
+              <colspec colnum="3" colname="c3"/>
+              <colspec colnum="4" colname="c4"/>
+              <colspec colnum="5" colname="c5"/>
+              <tbody>
+                <row>
+                  <entry>Image</entry>
+                  <entry>Description</entry>
+                  <entry>Not seen</entry>
+                  <entry>Fringe</entry>
+                  <entry>Solution set</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id1166970325705" alt=""><image src="../../media/Picture 2.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>This is our original weighted graph. This is not a tree because the definition of a tree requires that there are no circuits and this diagram contains circuits. A more correct name for this diagram would be a graph or a network. The numbers near the arcs indicate their weight. None of the arcs are highlighted, and vertex D has been arbitrarily chosen as a starting point.</entry>
+                  <entry>C, G</entry>
+                  <entry>A, B, E, F</entry>
+                  <entry>D</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id5521069" alt=""><image src="../../media/Picture 3.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>The second chosen vertex is the vertex nearest to D: A is 5 away, B is 9, E is 15, and F is 6. Of these, 5 is the smallest, so we highlight the vertex A and the arc DA.</entry>
+                  <entry>C, G</entry>
+                  <entry>B, E, F</entry>
+                  <entry>A, D</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id1166973198294" alt=""><image src="../../media/Picture 4-7204.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>The next vertex chosen is the vertex nearest to either D or A. B is 9 away from D and 7 away from A, E is 15, and F is 6. 6 is the smallest, so we highlight the vertex F and the arc DF.</entry>
+                  <entry>C</entry>
+                  <entry>B, E, G</entry>
+                  <entry>A, D, F</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id1166973298401" alt=""><image src="../../media/Picture 5.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>The algorithm carries on as above. Vertex B, which is 7 away from A, is highlighted. Here, the arc DB is highlighted in red, because both vertex B and vertex D have been highlighted, so it cannot be used.</entry>
+                  <entry>null</entry>
+                  <entry>C, E, G</entry>
+                  <entry>A, D, F, B</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id1166975548309" alt=""><image src="../../media/Picture 6.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>In this case, we can choose between C, E, and G. C is 8 away from B, E is 7 away from B, and G is 11 away from F. E is nearest, so we highlight the vertex E and the arc EB. Two other arcs have been highlighted in red, as both their joining vertices have been used.</entry>
+                  <entry>null</entry>
+                  <entry>C, G</entry>
+                  <entry>A, D, F, B, E</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id3783330" alt=""><image src="../../media/Picture 7-7eac.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>Here, the only vertices available are C and G. C is 5 away from E, and G is 9 away from E. C is chosen, so it is highlighted along with the arc EC. The arc BC is also highlighted in red.</entry>
+                  <entry>null</entry>
+                  <entry>G</entry>
+                  <entry>A, D, F, B, E, C</entry>
+                </row>
+                <row>
+                  <entry>
+                    <media id="id2691546" alt=""><image src="../../media/Picture 8.png" mime-type="image/png"/></media>
+                  </entry>
+                  <entry>Vertex G is the only remaining vertex. It is 11 away from F, and 9 away from E. E is nearer, so we highlight it and the arc EG. Now all the vertices have been highlighted, the minimum spanning tree is shown in green. In this case, it has weight 39.</entry>
+                  <entry>null</entry>
+                  <entry>null</entry>
+                  <entry>A, D, F, B, E, C, G</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para id="id3353040">Pseudo-code</para>
+          <para id="id3353051">Min-heap</para>
+          <para id="id3353062">Initialization</para>
+          <para id="id3353066">inputs: A graph, a function returning edge weights weight-function, and an initial vertex</para>
+          <para id="id3353072">initial placement of all vertices in the 'not yet seen' set, set initial vertex to be added to the tree, and place all vertices in a min-heap to allow for removal of the min distance from the minimum graph.</para>
+          <para id="id3353080">for each vertex in graph</para>
+          <para id="id3353112">set min_distance of vertex to ∞</para>
+          <para id="id3353156">set parent of vertex to null</para>
+          <para id="id3353203">set minimum_adjacency_list of vertex to empty list</para>
+          <para id="id3353246">set is_in_Q of vertex to true</para>
+          <para id="id3353289">set distance of initial vertex to zero</para>
+          <para id="id3353322">add to minimum-heap Q all vertices in graph.</para>
+          <para id="id3353339">Algorithm</para>
+          <para id="id3353343">In the algorithm description above,</para>
+          <para id="id3353347">nearest vertex is Q[0], now latest addition</para>
+          <para id="id3353359">fringe is v in Q where distance of v &lt; ∞ after nearest vertex is removed</para>
+          <para id="id3353374">not seen is v in Q where distance of v = ∞ after nearest vertex is removed</para>
+          <para id="id3353388">The while loop will fail when remove minimum returns null. The adjacency list is set to allow a directional graph to be returned.</para>
+          <para id="id3353394">time complexity: V for loop, log(V) for the remove function</para>
+          <para id="id3353400">while latest_addition = remove minimum in Q</para>
+          <para id="id3353425">set is_in_Q of latest_addition to false</para>
+          <para id="id3353460">add latest_addition to (minimum_adjacency_list of (parent of latest_addition))</para>
+          <para id="id3353488">add (parent of latest_addition) to (minimum_adjacency_list of latest_addition)</para>
+          <para id="id3353516">time complexity: E/V, the average number of vertices</para>
+          <para id="id3353521">for each adjacent of latest_addition</para>
+          <para id="id3353560">if (is_in_Q of adjacent) and (weight-function(latest_addition, adjacent) &lt; min_distance of adjacent)</para>
+          <para id="id3353614">set parent of adjacent to latest_addition</para>
+          <para id="id3353661">set min_distance of adjacent to weight-function(latest_addition, adjacent)</para>
+          <para id="id3353722">time complexity: log(V), the height of the heap</para>
+          <para id="id3353727">update adjacent in Q, order by min_distance</para>
+          <para id="id3353755">Proof of correctness</para>
+          <para id="id3353767">Let P be a connected, weighted graph. At every iteration of Prim's algorithm, an edge must be found that connects a vertex in a subgraph to a vertex outside the subgraph. Since P is connected, there will always be a path to every vertex. The output Y of Prim's algorithm is a tree, because the edge and vertex added to Y are connected. Let Y1 be a minimum spanning tree of P. If Y1=Y then Y is a minimum spanning tree. Otherwise, let e be the first edge added during the construction of Y that is not in Y1, and V be the set of vertices connected by the edges added before e. Then one endpoint of e is in V and the other is not. Since Y1 is a spanning tree of P, there is a path in Y1 joining the two endpoints. As one travels along the path, one must encounter an edge f joining a vertex in V to one that is not in V. Now, at the iteration when e was added to Y, f could also have been added and it would be added instead of e if its weight was less than e. Since f was not added, we conclude that</para>
+          <para id="id3354036">w(f) ≥ w(e).</para>
+          <para id="id3354072">Let Y2 be the graph obtained by removing f and adding e from Y1. It is easy to show that Y2 is connected, has the same number of edges as Y1, and the total weights of its edges is not larger than that of Y1, therefore it is also a minimum spanning tree of P and it contains e and all the edges added before it during the construction of V. Repeat the steps above and we will eventually obtain a minimum spanning tree of P that is identical to Y. This shows Y is a minimum spanning tree.</para>
+        </section>
+      </section>
+      <section id="id-0752898381085">
+        <title>7.3. Shortest paths</title>
+        <section id="id-111243164572">
+          <title>7.3.1. Properties of shortest paths</title>
+          <para id="id3354232">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3354243">In graph theory, the shortest path problem is the problem of finding a path between two vertices such that the sum of the weights of its constituent edges is minimized. An example is finding the quickest way to get from one location to another on a road map; in this case, the vertices represent locations and the edges represent segments of road and are weighted by the time needed to travel that segment.</para>
+          <para id="id3354280">Formally, given a weighted graph (that is, a set V of vertices, a set E of edges, and a real-valued weight function f : E → R), and one element v of V, find a path P from v to each v' of V so that</para>
+          <figure id="id3354355">
+            <media id="id1166970566629" alt=""><image src="../../media/Picture 475.png" mime-type="image/png" height="35" width="57"/></media>
+          </figure>
+          <para id="id3354380">is minimal among all paths connecting v to v' .</para>
+          <para id="id3354395">Sometimes it is called the single-pair shortest path problem, to distinguish it from the following generalizations:</para>
+          <list id="id3354406" list-type="bulleted">
+            <item>The single-source shortest path problem is a more general problem, in which we have to find shortest paths from a source vertex v to all other vertices in the graph.</item>
+            <item>The all-pairs shortest path problem is an even more general problem, in which we have to find shortest paths between every pair of vertices v, v' in the graph.</item>
+          </list>
+          <para id="id3354472">Both these generalizations have significantly more performant algorithms in practice than simply running a single-pair shortest path algorithm on all relevant pairs of vertices.</para>
+        </section>
+      </section>
+      <section id="id-586276066781">
+        <title>Algorithms</title>
+        <para id="id3354492">The most important algorithms for solving this problem are:</para>
+        <list id="id3354497" list-type="bulleted">
+          <item>Dijkstra's algorithm — solves single source problem if all edge weights are greater than or equal to zero. Without worsening the run time, this algorithm can in fact compute the shortest paths from a given start point s to all other nodes.</item>
+          <item>Bellman-Ford algorithm — solves single source problem if edge weights may be negative.</item>
+          <item>A* search algorithm solves for single source shortest paths using heuristics to try to speed up the search</item>
+          <item>Floyd-Warshall algorithm — solves all pairs shortest paths.</item>
+          <item>Johnson's algorithm — solves all pairs shortest paths, may be faster than Floyd-Warshall on sparse graphs.</item>
+          <item>Perturbation theory; finds (at worst) the locally shortest path</item>
+        </list>
+      </section>
+      <section id="id-54714983828">
+        <title>Applications</title>
+        <para id="id3354583">Shortest path algorithms are applied in an obvious way to automatically find directions between physical locations, such as driving directions on web mapping websites like Mapquest.</para>
+        <para id="id3354601">If one represents a nondeterministic abstract machine as a graph where vertices describe states and edges describe possible transitions, shortest path algorithms can be used to find an optimal sequence of choices to reach a certain goal state, or to establish lower bounds on the time needed to reach a given state. For example, if vertices represents the states of a puzzle like a Rubik's Cube and each directed edge corresponds to a single move or turn, shortest path algorithms can be used to find a solution that uses the minimum possible number of moves.</para>
+        <para id="id3354625">In a networking or telecommunications mindset, this shortest path problem is sometimes called the min-delay path problem and usually tied with a widest path problem. e.g.: Shortest (min-delay) widest path or Widest shortest (min-delay) path.</para>
+        <section id="id-923295154084">
+          <title>7.3.2. Dijkstra’s algorithms</title>
+          <para id="id3354642">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3354652">Dijkstra's algorithm, named after its discoverer, Dutch computer scientist Edsger Dijkstra, is a greedy algorithm that solves the single-source shortest path problem for a directed graph with non negative edge weights.</para>
+          <para id="id3354664">For example, if the vertices (nodes) of the graph represent cities and edge weights represent driving distances between pairs of cities connected by a direct road, Dijkstra's algorithm can be used to find the shortest route between two cities.</para>
+          <para id="id3354672">The input of the algorithm consists of a weighted directed graph G and a source vertex s in G. We will denote V the set of all vertices in the graph G. Each edge of the graph is an ordered pair of vertices (u,v) representing a connection from vertex u to vertex v. The set of all edges is denoted E. Weights of edges are given by a weight function w: E → [0, ∞); therefore w(u,v) is the cost of moving directly from vertex u to vertex v. The cost of an edge can be thought of as (a generalization of) the distance between those two vertices. The cost of a path between two vertices is the sum of costs of the edges in that path. For a given pair of vertices s and t in V, the algorithm finds the path from s to t with lowest cost (i.e. the shortest path). It can also be used for finding costs of shortest paths from a single vertex s to all other vertices in the graph.</para>
+        </section>
+      </section>
+      <section id="id-241599392203">
+        <title>Pseudo-code</title>
+        <para id="id3354825">In the following algorithm, u := extract_min(Q) searches for the vertex u in the vertex set Q that has the least dist[u] value. That vertex is removed from the set Q and returned to the user. length(u, v) calculates the length between the two neighbor-nodes u and v. alt on line 10 is the length of the path from the root node to the neighbor node v if it were to go through u. If this path is shorter than the current shortest path recorded for v, that current path is replaced with this alt path.</para>
+        <para id="id3354912">1 function Dijkstra(Graph, source):</para>
+        <para id="id3354947">2 for each vertex v in Graph: // Initializations</para>
+        <para id="id3354992">3 dist[v] := infinity // Unknown distance function from s to v</para>
+        <para id="id3355021">4 previous[v] := undefined</para>
+        <para id="id3355043">5  dist[source] := 0 // Distance from s to s</para>
+        <para id="id3355077">6 Q := copy(Graph) // Set of all unvisited vertices</para>
+        <para id="id3355113">7 while Q is not empty: // The main loop</para>
+        <para id="id3355157">8 u := extract_min(Q) // Remove best vertex from priority queue; returns source on first iteration</para>
+        <para id="id3355194">9 for each neighbor v of u:</para>
+        <para id="id3355232">10 alt = dist[u] + length(u, v)</para>
+        <para id="id3355275">11 if alt &lt; dist[v] // Relax (u,v)</para>
+        <para id="id3355319">12 dist[v] := alt</para>
+        <para id="id3355343">13 previous[v] := u</para>
+        <para id="id3355367">If we are only interested in a shortest path between vertices source and target, we can terminate the search at line 9 if u = target. Now we can read the shortest path from source to target by iteration:</para>
+        <para id="id3355410">1 S := empty sequence</para>
+        <para id="id3355426">2 u := target</para>
+        <para id="id3355446">3 while defined previous[u]</para>
+        <para id="id3355470">4 insert u at the beginning of S</para>
+        <para id="id3355495">5 u := previous[u]</para>
+        <para id="id3355522">Now sequence S is the list of vertices constituting one of the shortest paths from source to target, or the empty sequence if no path exists.</para>
+        <para id="id3355546">A more general problem would be to find all the shortest paths between source and target (there might be several different ones of the same length). Then instead of storing only a single node in each entry of previous[] we would store all nodes satisfying the relaxation condition. For example, if both r and source connect to target and both of them lie on different shortest paths through target (because the edge cost is the same in both cases), then we would add both r and source to previous[target]. When the algorithm completes, previous[] data structure will actually describe a graph that is a subset of the original graph with some edges removed. Its key property will be that if the algorithm was run with some starting node, then every path from that node to any other node in the new graph will be the shortest path between those nodes in the original graph, and all paths of that length from the original graph will be present in the new graph. Then to actually find all these short paths between two given nodes we would use path finding algorithm on the new graph, such as depth-first search.</para>
+      </section>
+      <section id="id-411474708289">
+        <title>Running time</title>
+        <para id="id3355640">The running time of Dijkstra's algorithm on a graph with edges E and vertices V can be expressed as a function of |E| and |V| using the Big-O notation.</para>
+        <para id="id3355668">The simplest implementation of the Dijkstra's algorithm stores vertices of set Q in an ordinary linked list or array, and operation Extract-Min(Q) is simply a linear search through all vertices in Q. In this case, the running time is O(|V|2+|E|).</para>
+        <para id="id3355711">For sparse graphs, that is, graphs with many fewer than |V|2 edges, Dijkstra's algorithm can be implemented more efficiently by storing the graph in the form of adjacency lists and using a binary heap, pairing heap, or Fibonacci heap as a priority queue to implement the Extract-Min function efficiently. With a binary heap, the algorithm requires O(( | E | + | V | )log | V | ) time (which is dominated by O( | E | log | V | ) assuming every vertex is connected, i.e., <media id="id1166972873650" alt=""><image src="../../media/Picture 21.png" mime-type="image/png" height="21" width="117"/></media>), and the Fibonacci heap improves this to O( | E | + | V | log | V | ).</para>
+      </section>
+      <section id="id-525483152716">
+        <title>Related problems and algorithms</title>
+        <para id="id3355877">The functionality of Dijkstra's original algorithm can be extended with a variety of modifications. For example, sometimes it is desirable to present solutions which are less than mathematically optimal. To obtain a ranked list of less-than-optimal solutions, the optimal solution is first calculated. A single edge appearing in the optimal solution is removed from the graph, and the optimum solution to this new graph is calculated. Each edge of the original solution is suppressed in turn and a new shortest-path calculated. The secondary solutions are then ranked and presented after the first optimal solution.</para>
+        <para id="id3355892">OSPF (open shortest path first) is a well known real-world implementation of Dijkstra's algorithm used in Internet routing.</para>
+        <para id="id3355898">Unlike Dijkstra's algorithm, the Bellman-Ford algorithm can be used on graphs with negative edge weights, as long as the graph contains no negative cycle reachable from the source vertex s. (The presence of such cycles means there is no shortest path, since the total weight becomes lower each time the cycle is traversed.)</para>
+        <para id="id3355913">The A* algorithm is a generalization of Dijkstra's algorithm that cuts down on the size of the subgraph that must be explored, if additional information is available that provides a lower-bound on the "distance" to the target.</para>
+        <section id="id-959226571187">
+          <title>7.3.3. Breadth-first search</title>
+          <para id="id3355940">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3355950">Breadth-first search (BFS) is a graph search algorithm that begins at the root node and explores all the neighboring nodes. Then for each of those nearest nodes, it explores their unexplored neighbor nodes, and so on, until it finds the goal.</para>
+          <para id="id3355979">BFS is a uninformed search method that aims to expand and examine all nodes of a graph systematically in search of a solution. In other words, it exhaustively searches the entire graph without considering the goal until it finds it. It does not use a heuristic.</para>
+          <para id="id3356004">From the standpoint of the algorithm, all child nodes obtained by expanding a node are added to a FIFO queue. In typical implementations, nodes that have not yet been examined for their neighbors are placed in some container (such as a queue or linked list) called "open" and then once examined are placed in the container "closed".</para>
+          <table id="id3356035" summary="">
+            <tgroup cols="3">
+              <colspec colnum="1" colname="c1"/>
+              <colspec colnum="2" colname="c2"/>
+              <colspec colnum="3" colname="c3"/>
+              <tbody>
+                <row>
+                  <entry/>
+                  <entry/>
+                  <entry><media id="id1166973556358" alt=""><image src="../../media/Picture 522.png" mime-type="image/png"/></media>Pic.15 Animated example of a breadth-first search</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </section>
+      </section>
+      <section id="id-910202695521">
+        <title>Algorithm (informal)</title>
+        <list id="id3356123" list-type="enumerated">
+          <item>Put the ending node (the root node) in the queue.</item>
+          <item>Pull a node from the beginning of the queue and examine it. <list id="id3356139" list-type="bulleted"><item>If the searched element is found in this node, quit the search and return a result.</item><item>Otherwise push all the (so-far-unexamined) successors (the direct child nodes) of this node into the end of the queue, if there are any.</item></list></item>
+          <item>If the queue is empty, every node on the graph has been examined -- quit the search and return "not found".</item>
+          <item>Repeat from Step 2.</item>
+        </list>
+        <section id="id-797686306857">
+          <title>C implementation</title>
+          <para id="id3356184">Algorithm of Breadth-first search：</para>
+          <para id="id3356192">void BFS(VLink G[], int v) { </para>
+          <para id="id3356197">int w;</para>
+          <para id="id3356204">VISIT(v); /*visit vertex v*/</para>
+          <para id="id3356216">visited[v] = 1; /*mark v as visited : 1 */</para>
+          <para id="id3356228">ADDQ(Q,v);</para>
+          <para id="id3356236">while(!QMPTYQ(Q)) { </para>
+          <para id="id3356244">v = DELQ(Q); /*Dequeue v*/</para>
+          <para id="id3356256">w = FIRSTADJ(G,v); /*Find first neighbor, return -1 if no neighbor*/</para>
+          <para id="id3356268">while(w != -1) { </para>
+          <para id="id3356276">if(visited[w] == 0) { </para>
+          <para id="id3356284">VISIT(w); /*visit vertex v*/</para>
+          <para id="id3356296">ADDQ(Q,w); /*Enqueue current visited vertext w*/</para>
+          <para id="id3356308">visited[w] = 1; /*mark w as visited*/</para>
+          <para id="id3356320">}</para>
+          <para id="id3356328">W = NEXTADJ(G,v); /*Find next neighbor, return -1 if no neighbor*/</para>
+          <para id="id3356340">}</para>
+          <para id="id3356347">} </para>
+          <para id="id3356356">}</para>
+          <para id="id3356360">Main Algorithm of apply Breadth-first search to graph G=(V,E)：</para>
+          <para id="id3356370">void TRAVEL_BFS(VLink G[], int visited[], int n) { </para>
+          <para id="id3356375">int i;</para>
+          <para id="id3356382">for(i = 0; i &lt; n; i ++) {</para>
+          <para id="id3356390">visited[i] = 0; /* Mark initial value as 0 */</para>
+          <para id="id3356402">}</para>
+          <para id="id3356409">for(i = 0; i &lt; n; i ++)</para>
+          <para id="id3356417">if(visited[i] == 0)</para>
+          <para id="id3356424">BFS(G,i);</para>
+          <para id="id3356432">}</para>
+        </section>
+        <section id="id-893875377339">
+          <title>C++ implementation</title>
+          <para id="id3356447">This is the implementation of the above informal algorithm, where the "so-far-unexamined" is handled by the parent array. For actual C++ applications, see the Boost Graph Library.</para>
+          <para id="id3356460">Suppose we have a struct:</para>
+          <para id="id3356464">struct Vertex {</para>
+          <para id="id3356469">...</para>
+          <para id="id3356476">std::vector&lt;int&gt; out;</para>
+          <para id="id3356484">...</para>
+          <para id="id3356491">};</para>
+          <para id="id3356496">and an array of vertices: (the algorithm will use the indexes of this array, to handle the vertices)</para>
+          <para id="id3356502">std::vector&lt;Vertex&gt; graph(vertices);</para>
+          <para id="id3356507">the algorithm starts from start and returns true if there is a directed path from start to end:</para>
+          <para id="id3356542">bool BFS(const std::vector&lt;Vertex&gt;&amp; graph, int start, int end) {</para>
+          <para id="id3356584">std::queue&lt;int&gt; next;</para>
+          <para id="id3356592">std::map&lt;int,int&gt; parent;</para>
+          <para id="id3356600">parent[start] = -1;</para>
+          <para id="id3356608">next.push(start);</para>
+          <para id="id3356615">while (!next.empty()) {</para>
+          <para id="id3356623">int u = next.front();</para>
+          <para id="id3356631">next.pop();</para>
+          <para id="id3356638">// Here is the point where you can examine the u th vertex of graph</para>
+          <para id="id3356653">// For example:</para>
+          <para id="id3356666">if (u == end) return true;</para>
+          <para id="id3356694">for (std::vector&lt;int&gt;::const_iterator j = graph[u].out.begin(); j != graph[u].out.end(); ++j) {</para>
+          <para id="id3356705">// Look through neighbors.</para>
+          <para id="id3356719">int v = *j;</para>
+          <para id="id3356727">if (parent.count(v) == 0) {</para>
+          <para id="id3356734">// If v is unvisited.</para>
+          <para id="id3356748">parent[v] = u;</para>
+          <para id="id3356756">next.push(v);</para>
+          <para id="id3356763">}</para>
+          <para id="id3356771">}</para>
+          <para id="id3356778">}</para>
+          <para id="id3356785">return false;</para>
+          <para id="id3356804">}</para>
+          <para id="id3356808">it also stores the parents of each node, from which you can get the path.</para>
+        </section>
+      </section>
+      <section id="id-273103080877">
+        <title>Features</title>
+        <list id="id3356832" list-type="bulleted">
+          <item>Space Complexity</item>
+        </list>
+        <para id="id3356841">Since all nodes discovered so far have to be saved, the space complexity of breadth-first search is O(|V| + |E|) where |V| is the number of nodes and |E| the number of edges in the graph. Note: another way of saying this is that it is O(BM) where B is the maximum branching factor and M is the maximum path length of the tree. This immense demand for space is the reason why breadth-first search is impractical for larger problems.</para>
+        <list id="id3356880" list-type="bulleted">
+          <item>Time Complexity</item>
+        </list>
+        <para id="id3356889">Since in the worst case breadth-first search has to consider all paths to all possible nodes the time complexity of breadth-first search is O(|V| + |E|) where |V| is the number of nodes and |E| the number of edges in the graph. The best case of this search is o(1). It occurs when the node is found at first time.</para>
+        <list id="id3356898" list-type="bulleted">
+          <item>Completeness</item>
+        </list>
+        <para id="id3356918">Breadth-first search is complete. This means that if there is a solution breadth-first search will find it regardless of the kind of graph. However, if the graph is infinite and there is no solution breadth-first search will diverge.</para>
+        <list id="id3356926" list-type="bulleted">
+          <item>Optimality</item>
+        </list>
+        <para id="id3356946">For unit-step cost, breadth-first search is optimal. In general breadth-first search is not optimal since it always returns the result with the fewest edges between the start node and the goal node. If the graph is a weighted graph, and therefore has costs associated with each step, a goal next to the start does not have to be the cheapest goal available. This problem is solved by improving breadth-first search to uniform-cost search which considers the path costs. Nevertheless, if the graph is not weighted, and therefore all step costs are equal, breadth-first search will find the nearest and the best solution.</para>
+      </section>
+      <section id="id-0474548721108">
+        <title>Applications of BFS</title>
+        <para id="id3356984">Breadth-first search can be used to solve many problems in graph theory, for example:</para>
+        <list id="id3356990" list-type="bulleted">
+          <item>Finding all connected components in a graph.</item>
+          <item>Finding all nodes within one connected component</item>
+          <item>Copying Collection, Cheney's algorithm</item>
+          <item>Finding the shortest path between two nodes u and v (in an unweighted graph)</item>
+          <item>Testing a graph for bipartiteness</item>
+          <item>(Reverse) Cuthill–McKee mesh numbering</item>
+        </list>
+        <section id="id-24716208223">
+          <title>Finding connected Components</title>
+          <para id="id3357065">The set of nodes reached by a BFS are the largest connected component containing the start node.</para>
+        </section>
+        <section id="id-499988295618">
+          <title>Testing bipartiteness</title>
+          <para id="id3357090">BFS can be used to test bipartiteness, by starting the search at any vertex and giving alternating labels to the vertices visited during the search. That is, give label 0 to the starting vertex, 1 to all its neighbours, 0 to those neighbours' neighbours, and so on. If at any step a vertex has (visited) neighbours with the same label as itself, then the graph is not bipartite. If the search ends without such a situation occurring, then the graph is bipartite.</para>
+        </section>
+        <section id="id-483859095966">
+          <title>Usage in 2D grids for computer games</title>
+          <para id="id3357121">BFS has been applied to pathfinding problems in computer games, such as Real-Time Strategy games, where the graph is represented by a tilemap, and each tile in the map represents a node. Each of that node is then connected to each of its neighbour (neighbour in north, north-east, east, south-east, south, south-west, west, and north-west).</para>
+          <para id="id3357131">It is worth mentioning that when BFS is used in that manner, the neighbour list should be created such that north, east, south and west get priority over north-east, south-east, south-west and north-west. The reason for this is that BFS tends to start searching in a diagonal manner rather than adjacent, and the path found will not be the correct one. BFS should first search adjacent nodes, then diagonal nodes.</para>
+        </section>
+        <section id="id-369143257252">
+          <title>7.3.4. Bellman-Ford algorithms</title>
+          <para id="id3357150">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3357160">The Bellman–Ford algorithm computes single-source shortest paths in a weighted digraph (where some of the edge weights may be negative). Dijkstra's algorithm accomplishes the same problem with a lower running time, but requires edge weights to be non-negative. Thus, Bellman–Ford is usually used only when there are negative edge weights.</para>
+          <para id="id3357196">If a graph contains a cycle of total negative weight then arbitrarily low weights are achievable and so there's no solution; Bellman-Ford detects this case.</para>
+          <para id="id3357203">Bellman-Ford is in its basic structure very similar to Dijkstra's algorithm, but instead of greedily selecting the minimum-weight node not yet processed to relax, it simply relaxes all the edges, and does this |V| − 1 times, where |V| is the number of vertices in the graph. The repetitions allow minimum distances to accurately propagate throughout the graph, since, in the absence of negative cycles, the shortest path can only visit each node at most once. Unlike the greedy approach, which depends on certain structural assumptions derived from positive weights, this straightforward approach extends to the general case.</para>
+          <para id="id3357232">Bellman–Ford runs in O(V·E) time, where V and E are the number of vertices and edges respectively.</para>
+          <para id="id3357265">procedure BellmanFord(list vertices, list edges, vertex source)</para>
+          <para id="id3357303">// This implementation takes in a graph, represented as lists of vertices</para>
+          <para id="id3357318">// and edges, and modifies the vertices so that their distance and</para>
+          <para id="id3357341">// predecessor attributes store the shortest paths.</para>
+          <para id="id3357364">// Step 1: Initialize graph</para>
+          <para id="id3357378">for each vertex v in vertices:</para>
+          <para id="id3357396">if v is source then v.distance := 0</para>
+          <para id="id3357431">else v.distance := infinity</para>
+          <para id="id3357453">v.predecessor := null</para>
+          <para id="id3357472">// Step 2: relax edges repeatedly</para>
+          <para id="id3357485">for i from 1 to size(vertices)-1: </para>
+          <para id="id3357523">for each edge uv in edges:</para>
+          <para id="id3357541">u := uv.source</para>
+          <para id="id3357548">v := uv.destination // uv is the edge from u to v</para>
+          <para id="id3357566">if v.distance &gt; u.distance + uv.weight:</para>
+          <para id="id3357586">v.distance := u.distance + uv.weight</para>
+          <para id="id3357594">v.predecessor := u</para>
+          <para id="id3357601">// Step 3: check for negative-weight cycles</para>
+          <para id="id3357615">for each edge uv in edges:</para>
+          <para id="id3357634">u := uv.source</para>
+          <para id="id3357641">v := uv.destination</para>
+          <para id="id3357649">if v.distance &gt; u.distance + uv.weight:</para>
+          <para id="id3357668">error "Graph contains a negative-weight cycle"</para>
+        </section>
+      </section>
+      <section id="id-462645378498">
+        <title>Proof of correctness</title>
+        <para id="id3357699">The correctness of the algorithm can be shown by induction. The precise statement shown by induction is:</para>
+        <para id="id3357710">Lemma. After i repetitions of for cycle:</para>
+        <list id="id3357730" list-type="bulleted">
+          <item>If Distance(u) is not infinity, it is equal to the length of some path from s to u;</item>
+          <item>If there is a path from s to u with at most i edges, then Distance(u) is at most the length of the shortest path from s to u with at most i edges.</item>
+        </list>
+        <para id="id3357822">Proof. For the base case of induction, consider i=0 and the moment before for cycle is executed for the first time. Then, for the source vertex, source.distance = 0, which is correct. For other vertices u, u.distance = infinity, which is also correct because there is no path from source to u with 0 edges.</para>
+        <para id="id3357878">For the inductive case, we first prove the first part. Consider a moment when a vertex's distance is updated by v.distance := u.distance + uv.weight. By inductive assumption, u.distance is the length of some path from source to u. Then u.distance + uv.weight is the length of the path from source to v that follows the path from source to u and then goes to v.</para>
+        <para id="id3357942">For the second part, consider the shortest path from source to u with at most i edges. Let v be the last vertex before u on this path. Then, the part of the path from source to v is the shortest path from source to v with at most i-1 edges. By inductive assumption, v.distance after i-1 cycles is at most the length of this path. Therefore, uv.weight + v.distance is at most the length of the path from s to u. In the ith cycle, u.distance gets compared with uv.weight + v.distance, and is set equal to it if uv.weight + v.distance was smaller. Therefore, after i cycles, u.distance is at most the length of the shortest path from source to u that uses at most i edges.</para>
+        <para id="id3358091">When i equals the number of vertices in the graph, each path will be the shortest path overall, unless there are negative-weight cycles. If a negative-weight cycle exists and is accessible from the source, then given any walk, a shorter one exists, so there is no shortest walk. Otherwise, the shortest walk will not include any cycles (because going around a cycle would make the walk shorter), so each shortest path visits each vertex at most once, and its number of edges is less than the number of vertices in the graph.</para>
+      </section>
+      <section id="id-485968835359">
+        <title>Applications in routing</title>
+        <para id="id3358128">A distributed variant of Bellman–Ford algorithm is used in distance-vector routing protocols, for example the Routing Information Protocol (RIP). The algorithm is distributed because it involves a number of nodes (routers) within an Autonomous system, a collection of IP networks typically owned by an ISP. It consists of the following steps:</para>
+        <list id="id3358154" list-type="enumerated">
+          <item>Each node calculates the distances between itself and all other nodes within the AS and stores this information as a table.</item>
+          <item>Each node sends its table to all neighboring nodes.</item>
+          <item>When a node receives distance tables from its neighbors, it calculates the shortest routes to all other nodes and updates its own table to reflect any changes.</item>
+        </list>
+        <para id="id3358178">The main disadvantages of Bellman–Ford algorithm in this setting are</para>
+        <list id="id3358185" list-type="bulleted">
+          <item>Does not scale well</item>
+          <item>Changes in network topology are not reflected quickly since updates are spread node-by-node.</item>
+          <item>Counting to infinity (if link or node failures render a node unreachable from some set of other nodes, those nodes may spend forever gradually increasing their estimates of the distance to it, and in the meantime there may be routing loops)</item>
+        </list>
+      </section>
+      <section id="id-992431433528">
+        <title>Implementation</title>
+        <para id="id3358222">The following program implements the Bellman–Ford algorithm in C.</para>
+        <para id="id3358233">#include &lt;limits.h&gt;</para>
+        <para id="id3358241">#include &lt;stdio.h&gt;</para>
+        <para id="id3358253">#include &lt;stdlib.h&gt;</para>
+        <para id="id3358266">/* Let INFINITY be an integer value not likely to be</para>
+        <para id="id3358278">confused with a real weight, even a negative one. */</para>
+        <para id="id3358289">#define INFINITY ((1 &lt;&lt; 14)-1)</para>
+        <para id="id3358303">typedef struct {</para>
+        <para id="id3358331">int source;</para>
+        <para id="id3358349">int dest;</para>
+        <para id="id3358367">int weight;</para>
+        <para id="id3358384">} Edge;</para>
+        <para id="id3358401">void BellmanFord(Edge edges[], int edgecount, int nodecount, int source)</para>
+        <para id="id3358464">{</para>
+        <para id="id3358475">int *distance = (int*) malloc(nodecount * sizeof(*distance));</para>
+        <para id="id3358544">int i, j;</para>
+        <para id="id3358562">for (i=0; i &lt; nodecount; i++)</para>
+        <para id="id3358601">distance[i] = INFINITY;</para>
+        <para id="id3358630">/* The source node distance is set to zero. */</para>
+        <para id="id3358644">distance[source] = 0;</para>
+        <para id="id3358681">for (i=0; i &lt; nodecount; i++) {</para>
+        <para id="id3358728">for (j=0; j &lt; edgecount; j++) {</para>
+        <para id="id3358776">if (distance[edges[j].source] != INFINITY) {</para>
+        <para id="id3358852">int new_distance = distance[edges[j].source] + edges[j].weight;</para>
+        <para id="id3358934">if (new_distance &lt; distance[edges[j].dest])</para>
+        <para id="id3358994">distance[edges[j].dest] = new_distance;</para>
+        <para id="id3359043">}</para>
+        <para id="id3359056">}</para>
+        <para id="id3359070">}</para>
+        <para id="id3359084">for (i=0; i &lt; edgecount; i++) {</para>
+        <para id="id3359132">if (distance[edges[i].dest] &gt; distance[edges[i].source] + edges[i].weight) {</para>
+        <para id="id3359267">puts("Negative edge weight cycles detected!");</para>
+        <para id="id3359295">free(distance);</para>
+        <para id="id3359323">return;</para>
+        <para id="id3359340">}</para>
+        <para id="id3359354">}</para>
+        <para id="id3359368">for (i=0; i &lt; nodecount; i++) {</para>
+        <para id="id3359416">printf("The shortest distance between nodes %d and %d is %d\n",</para>
+        <para id="id3359451">source, i, distance[i]);</para>
+        <para id="id3359478">}</para>
+        <para id="id3359492">free(distance);</para>
+        <para id="id3359519">return;</para>
+        <para id="id3359537">}</para>
+        <para id="id3359549">int main(void)</para>
+        <para id="id3359578">{</para>
+        <para id="id3359589">/* This test case should produce the distances 2, 4, 7, -2, and 0. */</para>
+        <para id="id3359604">Edge edges[10] = {{0,1, 5}, {0,2, 8}, {0,3, -4}, {1,0, -2},</para>
+        <para id="id3359763">{2,1, -3}, {2,3, 9}, {3,1, 7}, {3,4, 2},</para>
+        <para id="id3359905">{4,0, 6}, {4,2, 7}};</para>
+        <para id="id3359982">BellmanFord(edges, 10, 5, 4);</para>
+        <para id="id3360031">return 0;</para>
+        <para id="id3360057">}</para>
+        <section id="id-655453642467">
+          <title>7.3.5. Johnson’s algorithms</title>
+          <para id="id3360073">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3360083">Johnson's algorithm is a way to solve the all-pairs shortest path problem in a sparse, weighted, directed graph.</para>
+          <para id="id3360114">First, it adds a new node with zero weight edge from it to all other nodes, and runs the Bellman-Ford algorithm to check for negative weight cycles and find h(v), the least weight of a path from the new node to node v. Next it reweights the edges using the nodes' h(v) values. Finally for each node, it runs Dijkstra's algorithm and stores the computed least weight to other nodes, reweighted using the nodes' h(v) values, as the final weight. The time complexity is O(V2log V + VE).</para>
+        </section>
+      </section>
+      <section id="id-983083251486">
+        <title>7.4. Union-find problem</title>
+        <para id="id3360227">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3360237">Given a set of elements, it is often useful to break them up or partition them into a number of separate, non-overlapping sets. A disjoint-set data structure is a data structure that keeps track of such a partitioning. A union-find algorithm is an algorithm that performs two useful operations on such a data structure:</para>
+        <list id="id3360263" list-type="bulleted">
+          <item>Find: Determine which set a particular element is in. Also useful for determining if two elements are in the same set.</item>
+          <item>Union: Combine or merge two sets into a single set.</item>
+        </list>
+        <para id="id3360295">Because it supports these two operations, a disjoint-set data structure is sometimes called a merge-find set. The other important operation, MakeSet, which makes a set containing only a given element (a singleton), is generally trivial. With these three operations, many practical partitioning problems can be solved (see the Applications section).</para>
+        <para id="id3360326">In order to define these operations more precisely, we need some way of representing the sets. One common approach is to select a fixed element of each set, called its representative, to represent the set as a whole. Then, Find(x) returns the representative of the set that x belongs to, and Union takes two set representatives as its arguments.</para>
+      </section>
+      <section id="id-690035708877">
+        <title>Disjoint-set linked lists</title>
+        <para id="id3360369">Perhaps the simplest approach to creating a disjoint-set data structure is to create a linked list for each set. We choose the element at the head of the list as the representative.</para>
+        <para id="id3360382">MakeSet is obvious, creating a list of one element. Union simply appends the two lists, a constant-time operation. Unfortunately, with this implementation Find requires Ω(n) or linear time with this approach.</para>
+        <para id="id3360411">We can avoid this by including in each linked list node a pointer to the head of the list; then Find takes constant time. However, we've now ruined the time of Union, which has to go through the elements of the list being appended to make them point to the head of the new combined list, requiring Ω(n) time.</para>
+        <para id="id3360437">We can ameliorate this by always appending the smaller list to the longer, called the weighted union heuristic. This also requires keeping track of the length of each list as we perform operations to be efficient. Using this, a sequence of m MakeSet, Union, and Find operations on n elements requires O(m + nlog n) time. To make any further progress, we need to start over with a different data structure.</para>
+      </section>
+      <section id="id-127620079008">
+        <title>Disjoint-set forests</title>
+        <para id="id3360515">We now turn to disjoint-set forests, a data structure where each set is represented by a tree data structure where each node holds a reference to its parent node. Disjoint-set forests were first described by Bernard A. Galler and Michael J. Fisher in 1964, although their precise analysis took years.</para>
+        <para id="id3360540">In a disjoint-set forest, the representative of each set is the root of that set's tree. Find simply follows parent nodes until it reaches the root. Union combines two trees into one by attaching the root of one to the root of the other. One way of implementing these might be:</para>
+        <para id="id3360560">function MakeSet(x)</para>
+        <para id="id3360576">x.parent := x</para>
+        <para id="id3360585">function Find(x)</para>
+        <para id="id3360601">if x.parent == x</para>
+        <para id="id3360619">return x</para>
+        <para id="id3360636">else </para>
+        <para id="id3360657">return Find(x.parent)</para>
+        <para id="id3360676">function Union(x, y)</para>
+        <para id="id3360692">xRoot := Find(x)</para>
+        <para id="id3360700">yRoot := Find(y)</para>
+        <para id="id3360708">xRoot.parent := yRoot</para>
+        <para id="id3360715">In this naive form, this approach is no better than the linked-list approach, because the tree it creates can be highly unbalanced, but it can be enhanced in two ways.</para>
+        <para id="id3360722">The first way, called union by rank, is to always attach the smaller tree to the root of the larger tree, rather than vice versa. To evaluate which tree is larger, we use a simple heuristic called rank: one-element trees have a rank of zero, and whenever two trees of the same rank are unioned together, the result has one greater rank. Just applying this technique alone yields an amortized running-time of O(logn) per MakeSet, Union, or Find operation. Here are the improved MakeSet and Union:</para>
+        <para id="id3360797">function MakeSet(x)</para>
+        <para id="id3360813">x.parent := x</para>
+        <para id="id3360821">x.rank := 0</para>
+        <para id="id3360834">function Union(x, y)</para>
+        <para id="id3360850">xRoot := Find(x)</para>
+        <para id="id3360857">yRoot := Find(y)</para>
+        <para id="id3360865">if xRoot.rank &gt; yRoot.rank</para>
+        <para id="id3360883">yRoot.parent := xRoot</para>
+        <para id="id3360891">else if xRoot.rank &lt; yRoot.rank</para>
+        <para id="id3360909">xRoot.parent := yRoot</para>
+        <para id="id3360917">else if xRoot != yRoot</para>
+        <para id="id3360935">yRoot.parent := xRoot</para>
+        <para id="id3360943">xRoot.rank := xRoot.rank + 1</para>
+        <para id="id3360950">The second improvement, called path compression, is a way of flattening the structure of the tree whenever we use Find on it. The idea is that each node we visit on our way to a root node may as well be attached directly to the root node; they all share the same representative. To effect this, we make one traversal up to the root node, to find out what it is, and then make another traversal, making this root node the immediate parent of all nodes along the path. The resulting tree is much flatter, speeding up future operations not only on these elements but on those referencing them, directly or indirectly. Here is the improved Find:</para>
+        <para id="id3360981">function Find(x)</para>
+        <para id="id3360997">if x.parent == x</para>
+        <para id="id3361015">return x</para>
+        <para id="id3361032">else</para>
+        <para id="id3361046">x.parent := Find(x.parent)</para>
+        <para id="id3361054">return x.parent</para>
+        <para id="id3361072">These two techniques complement each other; applied together, the amortized time per operation is only O(α(n)), where α(n) is the inverse of the function f(n) = A(n,n), and A is the extremely quickly-growing Ackermann function. Since α(n) is its inverse, it's less than 5 for all remotely practical values of n. Thus, the amortized running time per operation is effectively a small constant.</para>
+        <para id="id3361193">In fact, we can't get better than this: Fredman and Saks showed in 1989 that Ω(α(n)) words must be accessed by any disjoint-set data structure per operation on average.</para>
+      </section>
+      <section id="id-677644505784">
+        <title>Applications</title>
+        <para id="id3361236">Disjoint-set data structures arise naturally in many applications, particularly where some kind of partitioning or equivalence relation is involved, and this section discusses some of them.</para>
+        <section id="id-230607662689">
+          <title>Tracking the connected components of an undirected graph</title>
+          <para id="id3361268">Suppose we have an undirected graph and we want to efficiently make queries regarding the connected components of that graph, such as:</para>
+          <list id="id3361285" list-type="bulleted">
+            <item>Are two vertices of the graph in the same connected component?</item>
+            <item>List all vertices of the graph in a particular component.</item>
+            <item>How many connected components are there?</item>
+          </list>
+          <para id="id3361307">If the graph is static (not changing), we can simply use breadth-first search to associate a component with each vertex. However, if we want to keep track of these components while adding additional vertices and edges to the graph, a disjoint-set data structure is much more efficient.</para>
+          <para id="id3361322">We assume the graph is empty initially. Each time we add a vertex, we use MakeSet to make a set containing only that vertex. Each time we add an edge, we use Union to union the sets of the two vertices incident to that edge. Now, each set will contain the vertices of a single connected component, and we can use Find to determine which connected component a particular vertex is in, or whether two vertices are in the same connected component.</para>
+          <para id="id3361350">This technique is used by the Boost Graph Library to implement its Incremental Connected Components functionality.</para>
+          <para id="id3361366">Note that this scheme doesn't allow deletion of edges — even without path compression or the rank heuristic, this is not as easy, although more complex schemes have been designed that can deal with this type of incremental update.</para>
+        </section>
+        <section id="id-304807370413">
+          <title>Computing shorelines of a terrain</title>
+          <para id="id3361395">When computing the contours of a 3D surface, one of the first steps is to compute the "shorelines," which surround local minima or "lake bottoms." We imagine we are sweeping a plane, which we refer to as the "water level," from below the surface upwards. We will form a series of contour lines as we move upwards, categorized by which local minima they contain. In the end, we will have a single contour containing all local minima.</para>
+          <para id="id3361406">Whenever the water level rises just above a new local minimum, it creates a small "lake," a new contour line that surrounds the local minimum; this is done with the MakeSet operation.</para>
+          <para id="id3361419">As the water level continues to rise, it may touch a saddle point, or "pass." When we reach such a pass, we follow the steepest downhill route from it on each side until we arrive a local minimum. We use Find to determine which contours surround these two local minima, then use Union to combine them. Eventually, all contours will be combined into one, and we are done.</para>
+        </section>
+        <section id="id-836179123745">
+          <title>Classifying a set of atoms into molecules or fragments</title>
+          <para id="id3361460">In computational chemistry, collisions involving the fragmentation of large molecules can be simulated using molecular dynamics. The result is a list of atoms and their positions. In the analysis, the union-find algorithm can be used to classify these atoms into fragments. Each atom is initially considered to be part of its own fragment. The Find step usually consists of testing the distance between pairs of atoms, though other criterion like the electronic charge between the atoms could be used. The Union merges two fragments together. In the end, the sizes and characteristics of each fragment can be analyzed. </para>
+        </section>
+        <section id="id-612708506125">
+          <title>Connected component labeling in image analysis</title>
+          <para id="id3361543">In image analysis, some of the most efficient connected component labeling algorithms make use of union-find data structure. In this type of application, the time required form union-find operations is strictly linear.</para>
+        </section>
+      </section>
+      <section id="id-46430786876">
+        <title>7.5. Connectivity</title>
+        <para id="id3361560">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3361570">In mathematics and computer science, connectivity is one of the basic concepts of graph theory. It is closely related to the theory of network flow problems. The connectivity of a graph is an important measure of its robustness as a network.</para>
+        <para id="id3361590">Definitions of components, cuts and connectivity</para>
+        <para id="id3361596">In an undirected graph G, two vertices u and v are called connected if G contains a path from u to v. Otherwise, they are called disconnected. A graph is called connected if every pair of distinct vertices in the graph is connected. A connected component is a maximal connected subgraph of G. Each vertex belongs to exactly one connected component, as does each edge.</para>
+        <para id="id3361693">A directed graph is called weakly connected if replacing all of its directed edges with undirected edges produces a connected (undirected) graph. It is strongly connected or strong if it contains a directed path from u to v for every pair of vertices u,v. The strong components are the maximal strongly connected subgraphs</para>
+        <para id="id3361773">2-connectivity is also called "biconnectivity" and 3-connectivity is also called "triconnectivity".</para>
+        <para id="id3361779">A cut or vertex cut of a connected graph G is a set of vertices whose removal renders G disconnected. The connectivity or vertex connectivity κ(G) is the size of a smallest vertex cut. A graph is called k-connected or k-vertex-connected if its vertex connectivity is k or greater. A complete graph with n vertices has no cuts at all, but by convention its connectivity is n-1. A vertex cut for two vertices u and v is a set of vertices whose removal from the graph disconnects u and v. The local connectivity κ(u,v) is the size of a smallest vertex cut separating u and v. Local connectivity is symmetric; that is, κ(u,v)=κ(v,u). Moreover, κ(G) equals the minimum of κ(u,v) over all pairs of vertices u,v.</para>
+        <para id="id3435774">Analogous concepts can be defined for edges. Thus an edge cut of G is a set of edges whose removal renders the graph disconnected, the edge-connectivity κ′(G) is the size of a smallest edge cut, and the local edge-connectivity κ′(u,v) of two vertices u,v is the size of a smallest edge cut disconnecting u from v. Again, local edge-connectivity is symmetric. A graph is called k-edge-connected if its edge connectivity is k or greater.</para>
+        <para id="id3435892">All of these definitions and notations carry over to directed graphs. Local connectivity and local edge-connectivity are not necessarily symmetric for directed graphs.</para>
+        <para id="id3435899">Menger's theorem</para>
+        <para id="id3435910">One of the most important facts about connectivity in graphs is Menger's theorem, which characterizes the connectivity and edge-connectivity of a graph in terms of the number of independent paths between vertices.</para>
+        <para id="id3435918">If u and v are vertices of a graph G, then a collection of paths between u and v is called independent if no two of them share a vertex (other than u and v themselves). Similarly, the collection is edge-independent if no two paths in it share an edge. The greatest number of independent paths between u and v is written as λ(u,v), and the greatest number of edge-independent paths between u and v is written as λ′(u,v).</para>
+        <para id="id3436073">Menger's theorem asserts that κ(u,v) = λ(u,v) and κ′(u,v) = λ′(u,v) for every pair of vertices u and v. This fact is actually a special case of the max-flow min-cut theorem.</para>
+        <para id="id3436165">Computational aspects</para>
+        <para id="id3436176">The problem of determining whether two vertices in a graph are connected can be solved efficiently using a search algorithm, such as breadth-first search. More generally, it is easy to determine computationally whether a graph is connected (for example, by using a disjoint-set data structure), or to count the number of connected components.</para>
+        <para id="id3436186">By Menger's theorem, for any two vertices u and v in a connected graph G, the numbers κ(u,v) and κ′(u,v) can be determined efficiently using the max-flow min-cut algorithm. The connectivity and edge-connectivity of G can then be computed as the minimum values of κ(u,v) and κ′(u,v), respectively.</para>
+        <para id="id3436297">In computational complexity theory, SL is the class of problems log-space reducible to the problem of determining whether two vertices in a graph are connected, which was proved to be equal to L by Omer Reingold in 2004. Hence, directed graph connectivity may be solved in O(logn) space.</para>
+        <para id="id3436325">Examples</para>
+        <list id="id3436329" list-type="bulleted">
+          <item>The vertex- and edge-connectivities of a disconnected graph are both 0.</item>
+          <item>1-connectedness is synonymous with connectedness.</item>
+          <item>The complete graph on n vertices has edge-connectivity equal to n − 1. Every other simple graph on n vertices has strictly smaller edge-connectivity.</item>
+          <item>In a tree, the local edge-connectivity between every pair of vertices is 1.</item>
+        </list>
+        <para id="id3436388">Properties</para>
+        <list id="id3436392" list-type="bulleted">
+          <item>Connectedness is preserved by graph homomorphisms.</item>
+          <item>If G is connected then its line graph L(G) is also connected.</item>
+          <item>The vertex-connectivity of a graph is less than or equal to its edge-connectivity. That is, κ(G) ≤ κ′(G).</item>
+          <item>If a graph G is k-connected, then for every set of vertices U of cardinality k, there exists a cycle in G containing U. The converse is true when k = 2.</item>
+        </list>
+        <para id="id3436510">A graph G is 2-edge-connected if and only if it has an orientation that is strongly connected.</para>
+        <section id="id-353668710916">
+          <title>7.5.1. Non-direction connectivity</title>
+          <para id="id3436533">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3436544">A undirected graph G is an ordered pair G: = (V,E) that is subject to the following conditions:</para>
+          <list id="id3436590" list-type="bulleted">
+            <item>V is a set, whose elements are called vertices or nodes,</item>
+            <item>E is a set of pairs (unordered) of distinct vertices, called edges or lines</item>
+          </list>
+          <para id="id3436649">The vertices belonging to an edge are called the ends, endpoints, or end vertices of the edge.</para>
+          <para id="id3436670">
+            <media id="id1166975321261" alt=""><image src="../../media/Picture 543.png" mime-type="image/png" height="118" width="130"/></media>
+          </para>
+          <para id="id3436702">V (and hence E) are usually taken to be finite sets, and many of the well-known results are not true (or are rather different) for infinite graphs because many of the arguments fail in the infinite case. The order of a graph is | V | (the number of vertices). A graph's size is | E | , the number of edges. The degree of a vertex is the number of other vertices it is connected to by edges.</para>
+          <para id="id3436770">The edge set E induces a symmetric binary relation ~ on V that is called the adjacency relation of G. Specifically, for each edge {u,v} the vertices u and v are said to be adjacent to one another, which is denoted u ~ v.</para>
+          <para id="id3436832">For an edge {u, v} graph theorists usually use the somewhat shorter notation uv.</para>
+        </section>
+        <section id="id-431806901148">
+          <title>7.5.2. Direction connectivity</title>
+          <para id="id3436872">(From Wikipedia, the free encyclopedia)</para>
+          <figure id="id3436885"><media id="id1166974950939" alt=""><image src="../../media/Picture 11-60f2.png" mime-type="image/png" height="118" width="130"/></media>
+          <caption>Direction connectivity</caption></figure>
+          <para id="id3436907">A directed graph or digraph G is an ordered pair G: = (V,A) with</para>
+          <list id="id3436964" list-type="bulleted">
+            <item>V is a set, whose elements are called vertices or nodes,</item>
+            <item>A is a set of ordered pairs of vertices, called directed edges, arcs, or arrows.</item>
+          </list>
+          <para id="id3437035">An arc e = (x,y) is considered to be directed from x to y; y is called the head and x is called the tail of the arc; y is said to be a direct successor of x, and x is said to be a direct predecessor of y. If a path leads from x to y, then y is said to be a successor of x, and x is said to be a predecessor of y. The arc (y,x) is called the arc (x,y) inverted.</para>
+          <para id="id3437290">A directed graph is called symmetric if every arc belongs to it together with the corresponding inverted arc. A symmetric loopless directed graph is equivalent to an undirected graph with the pairs of inverted arcs replaced with edges; thus the number of edges is equal to the number of arcs halved.</para>
+          <para id="id3437310">A variation on this definition is the oriented graph, which is a graph (or multigraph; see below) with an orientation or direction assigned to each of its edges. A distinction between a directed graph and an oriented simple graph is that if x and y are vertices, a directed graph allows both (x,y) and (y,x) as edges, while only one is permitted in an oriented graph. A more fundamental difference is that, in a directed graph (or multigraph), the directions are fixed, but in an oriented graph (or multigraph), only the underlying graph is fixed, while the orientation may vary.</para>
+          <para id="id3437393">A directed acyclic graph, occasionally called a dag or DAG, is a directed graph with no directed cycles.</para>
+          <para id="id3437419">A quiver is simply a directed graph, but the context is different. When discussing quivers emphasis is placed on representations of the graph where vector spaces are attached to the vertices and linear transformations are attached to the arcs.</para>
+          <para id="id3437427">Mixed graph</para>
+          <para id="id3437437">A mixed graph G is a graph in which some edges may be directed and some may be undirected. It is written as an ordered triple G := (V, E, A) with V, E, and A defined as above. Directed and undirected graphs are special cases.</para>
+        </section>
+      </section>
+      <section id="id-473321577546">
+        <title>7.6. Topological sort</title>
+        <para id="id3437489">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3437500">An undirected graph can be viewed as a simplicial complex C with a single-element set per vertex and a two-element set per edge. The geometric realization |C| of the complex consists of a copy of the unit interval [0,1] per edge, with the endpoints of these intervals glued together at vertices. In this view, embeddings of graphs into a surface or as subdivisions of other graphs are both instances of topological embedding, homeomorphism of graphs is just the specialization of topological homeomorphism, the notion of a connected graph coincides with topological connectedness, and a connected graph is a tree if and only if its fundamental group is trivial.</para>
+        <para id="id3437564">Other simplicial complexes associated with graphs include the Whitney complex or clique complex, with a set per clique of the graph, and the matching complex, with a set per matching of the graph (equivalently, the clique complex of the complement of the line graph). The matching complex of a complete bipartite graph is called a chessboard complex, as it can be also described as the complex of sets of non-attacking rooks on a chessboard.</para>
+      </section>
+      <section id="id-764466005545">
+        <title>Examples</title>
+        <para id="id3437624">The canonical application of topological sorting is in scheduling a sequence of jobs. The jobs are represented by vertices, and there is an edge from x to y if job x must be completed before job y can be done (for example, washing machine must finish before we put the clothes to dry). Then, a topological sort gives an order in which to perform the jobs. This has applications in computer science, such as in instruction scheduling, ordering of formula cell evaluation in spreadsheets, dependencies in makefiles, and symbol dependencies in linkers.</para>
+        <table id="id3437677" summary="">
+          <tgroup cols="2">
+            <colspec colnum="1" colname="c1"/>
+            <colspec colnum="2" colname="c2"/>
+            <tbody>
+              <row>
+                <entry>
+                  <media id="id1166976037807" alt=""><image src="../../media/Picture 466.png" mime-type="image/png"/></media>
+                </entry>
+                <entry>The graph shown to the left has many valid topological sorts, including: 
+          FIXME: A LIST CAN NOT BE A TABLE ENTRY.
+          7,5,3,11,8,2,10,97,5,11,2,3,10,8,93,7,8,5,11,10,9,23,5,7,11,10,2,8,9</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </section>
+      <section id="id-983919484751">
+        <title>Algorithms</title>
+        <para id="id3437774">The usual algorithms for topological sorting have running time linear in the number of nodes plus the number of edges (Θ(|V|+|E|)).</para>
+        <para id="id3437786">One of these algorithms works by choosing vertices in the same order as the eventual topological sort. First, find a list of "start nodes" which have no incoming edges and insert them into a queue Q (at least one such node must exist if graph is acyclic). Then,</para>
+        <para id="id3437800">Q ← Set of all nodes with no incoming edges</para>
+        <para id="id3437806">while Q is non-empty do</para>
+        <para id="id3437822">remove a node n from Q</para>
+        <para id="id3437829">output n</para>
+        <para id="id3437837">for each node m with an edge e from n to m do</para>
+        <para id="id3437868">remove edge e from the graph</para>
+        <para id="id3437876">if m has no other incoming edges then</para>
+        <para id="id3437898">insert m into Q</para>
+        <para id="id3437906">if graph has edges then</para>
+        <para id="id3437922">output error message (graph has a cycle)</para>
+        <para id="id3437930">If this algorithm terminates without outputing all the nodes of the graph, it means the graph has at least one cycle and therefore is not a DAG, so a topological sort is impossible. Note that, reflecting the non-uniqueness of the resulting sort, the structure Q need not be a queue; it may be a stack or simply a set.</para>
+        <para id="id3437945">An alternative algorithm for topological sorting is based on depth-first search. Loop through the vertices of the graph, in any order, initiating a depth first search for any vertex that has not already been visited by a previous search. The desired topological sorting is the reverse postorder of these searches. That is, we can construct the ordering as a list of vertices, by adding each vertex to the start of the list at the time when the depth first search is processing that vertex and has returned from processing all children of that vertex. Since each edge and vertex is visited once, the algorithm runs in linear time.</para>
+      </section>
+    </section>
+  </content>
+</document>

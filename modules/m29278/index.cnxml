@@ -1,0 +1,81 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Assignment problems</title>
+  <metadata>
+  <md:content-id>m29278</md:content-id><md:title>Assignment problems</md:title>
+  <md:abstract/>
+  <md:uuid>1d78d184-9830-4627-835a-1149f739bcd5</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-734489542914">
+      <title>Assignment problem</title>
+      <section id="id-0673319575811">
+        <title>Assignment problem 1 - Depth First Search and The N-Queens Problem</title>
+        <para id="id5517615">Write recursive code to implement the N-Queen problem by using depth-first search. Make your code general enough to handle any arbitrary N. For testing purposes you might want to try N = 4, which is the smallest non-trivial problem. </para>
+        <para id="id5048769">Now use N = 8. Print out all the possible solutions. How many are there?</para>
+        <para id="id5048775">Modify your code to stop as soon as one solution is found. Run with N = 9, 10, 11, etc... </para>
+      </section>
+      <section id="id-905104762894">
+        <title>Assignment problem 2 - Greedy Search and The N-Queens Problem</title>
+        <para id="id5777230">Write code to implement the N-Queen problem by using greedy search. Make your code general enough to handle any arbitrary N. The code should terminate as soon as one solution is found. </para>
+        <para id="id5460138">For testing purposes you might want to try N = 4, which is the smallest non-trivial problem. Run with ever increasing N. </para>
+      </section>
+      <section id="id-532450519202">
+        <title>Assignment problem 3 - Finding a maximum weight matching in a weighted bipartite graph</title>
+        <para id="id3525326">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3525329">There are a number of agents and a number of tasks. Any agent can be assigned to perform any task, incurring some cost that may vary depending on the agent-task assignment. It is required to perform all tasks by assigning exactly one agent to each task in such a way that the total cost of the assignment is minimized.</para>
+        <para id="id5519061">If the numbers of agents and tasks are equal and the total cost of the assignment for all tasks is equal to the sum of the costs for each agent (or the sum of the costs for each task, which is the same thing in this case), then the problem is called the Linear assignment problem. Commonly, when speaking of the Assignment problem without any additional qualification, then the Linear assignment problem is meant.</para>
+        <para id="id6307599">Formal mathematical definition</para>
+        <para id="id6307606">The formal definition of the assignment problem (or linear assignment problem) is</para>
+        <para id="id5508894">Given two sets, A and T, of equal size, together with a weight function C : A × T → R. Find a bijection f : A → T such that the cost function:</para>
+        <figure id="id5497646">
+          <media id="id1168610455929" alt=""><image src="../../media/graphics1-242b.png" mime-type="image/png" height="45" width="125"/></media>
+        </figure>
+        <para id="id5494315">is minimized.</para>
+        <para id="id5494319">Usually the weight function is viewed as a square real-valued matrix C, so that the cost function is written down as:</para>
+        <figure id="id5494258">
+          <media id="id1168610309441" alt=""><image src="../../media/graphics2.png" mime-type="image/png" height="45" width="91"/></media>
+        </figure>
+        <para id="id5519264">The problem is "linear" because the cost function to be optimized as well as all the constraints contain only linear terms.</para>
+        <para id="id5519270">The problem can be expressed as a standard linear program with the objective function</para>
+        <figure id="id5519107">
+          <media id="id1168610551533" alt=""><image src="../../media/graphics3.png" mime-type="image/png" height="47" width="146"/></media>
+        </figure>
+        <para id="id5450967">subject to the constraints </para>
+        <para id="id5450971"><media id="id1168605973703" alt=""><image src="../../media/graphics4.png" mime-type="image/png" height="47" width="97"/></media>for <media id="id1168611813404" alt=""><image src="../../media/graphics5.png" mime-type="image/png" height="19" width="55"/></media>,</para>
+        <para id="id5492130"><media id="id1168608096895" alt=""><image src="../../media/graphics6.png" mime-type="image/png" height="45" width="94"/></media>for <media id="id1168604984851" alt=""><image src="../../media/graphics7.png" mime-type="image/png" height="23" width="59"/></media>,</para>
+        <para id="id5048656"><media id="id1168617394474" alt=""><image src="../../media/graphics8.png" mime-type="image/png" height="24" width="66"/></media> for <media id="id1168617331520" alt=""><image src="../../media/graphics9.png" mime-type="image/png" height="23" width="73"/></media>.</para>
+        <para id="id5987266">The variable xij represents the assignment of agent i to task j, taking value 1 if the assignment is done and 0 otherwise. This formulation allows also fractional variable values, but there is always an optimal solution where the variables take integer values. This is because the constraint matrix is totally unimodular. The first constraint requires that every agent is assigned to exactly one task, and the second constraint requires that every task is assigned exactly one agent</para>
+        <para id="id5542373">Suppose that a taxi firm has three taxis (the agents) available, and three customers (the tasks) wishing to be picked up as soon as possible. The firm prides itself on speedy pickups, so for each taxi the "cost" of picking up a particular customer will depend on the time taken for the taxi to reach the pickup point. The solution to the assignment problem will be whichever combination of taxis and customers results in the least total cost.</para>
+      </section>
+      <section id="id-926301310273">
+        <title>Assignment problem 4 - Stable marriage problem</title>
+        <para id="id5992382">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id5992386">Given n men and n women, where each person has ranked all members of the opposite sex with a unique number between 1 and n in order of preference, marry the men and women off such that there are no two people of opposite sex who would both rather have each other than their current partners. If there are no such people, all the marriages are "stable".</para>
+        <para id="id5991699">The Gale-Shapley algorithm involves a number of "rounds" (or "iterations") where each unengaged man "proposes" to the most-preferred woman to whom he has not yet proposed, and she accepts or rejects him based on whether she is already engaged to someone she prefers. If she is unengaged, or engaged to a man lower down her preference list than her new suitor, she accepts the proposal (and in the latter case, the other man becomes unengaged again). Note that only women can switch partners to increase their happiness.</para>
+        <para id="id5579483">Algorithm</para>
+        <para id="id5991926">function stableMatching {</para>
+        <para id="id5991939"> Initialize all m <media id="id1168617315795" alt=""><image src="../../media/graphics10.png" mime-type="image/png" height="13" width="11"/></media> M and w <media id="id1168615270676" alt=""><image src="../../media/graphics11.png" mime-type="image/png" height="13" width="11"/></media> W to free</para>
+        <para id="id5995021"> while <media id="id1168615003461" alt=""><image src="../../media/graphics12.png" mime-type="image/png" height="15" width="9"/></media> free man m who still has a woman w to propose to {</para>
+        <para id="id5509288"> w = m's highest ranked such woman</para>
+        <para id="id5509556"> if w is free</para>
+        <para id="id5995201"> (m, w) become engaged</para>
+        <para id="id5542134"> else some pair (m', w) already exists</para>
+        <para id="id5451510"> if w prefers m to m'</para>
+        <para id="id6001527"> (m, w) become engaged</para>
+        <para id="id5646533"> m' becomes free</para>
+        <para id="id5646305"> else</para>
+        <para id="id5646321"> (m', w) remain engaged</para>
+        <para id="id5451043"> }</para>
+        <para id="id5509613">}</para>
+        <para id="id5509619">Using this algorithm to guarantee that:</para>
+        <list id="id5509623" list-type="bulleted">
+          <item>Everyone gets married: Once a woman becomes engaged, she is always engaged to someone. So, at the end, there cannot be a man and a woman both unengaged, as he must have proposed to her at some point (since a man will eventually propose to everyone, if necessary) and, being unengaged, she would have to have said yes.</item>
+        </list>
+        <list id="id5990719" list-type="bulleted">
+          <item>The marriages are stable: Let Alice be a woman and Bob be a man. They are each paired/partnered/married, but not to each other. Upon completion of the algorithm, it is not possible for both Alice and Bob to prefer each other over their current partners. If Bob prefers Alice to his current partner, he must have proposed to Alice before he proposed to his current partner. If Alice accepted his proposal, yet is not married to him at the end, she must have dumped him for someone she likes more, and therefore doesn't like Bob more than her current partner. If Alice rejected his proposal, she was already with someone she liked more than Bob.</item>
+        </list>
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,23 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Table of Content</title>
+  <metadata>
+  <md:content-id>m29540</md:content-id><md:title>Table of Content</md:title>
+  <md:abstract/>
+  <md:uuid>3e721240-c687-43a1-a317-25fa722a9e70</md:uuid>
+</metadata>
+
+<content>
+    <para id="id5225104">Data Structures and Algorithms</para>
+    <para id="id5225108">Contents</para>
+    <list id="id5225112" list-type="enumerated">
+      <item>Introduction to Algorithms<list id="id5225121" list-type="bulleted"><item>Problem solution</item><item>Data models</item><item>Data models in programming languages</item><item>Data structures</item><item>Algorithms analysis</item></list></item>
+      <item>Linked lists<list id="id3686333" list-type="bulleted"><item>Singly linked lists</item><item>Doubly linked lists</item><item>Circular linked lists</item><item>Table transform </item></list></item>
+      <item>Stack and Queue<list id="id3686360" list-type="bulleted"><item>Stack</item><item>Queue</item><item>Priority queue</item></list></item>
+      <item>Recursion<list id="id3686383" list-type="bulleted"><item>Introduction to recursion</item><item>Recursion analysis</item><item>Tail recursion</item><item>Recursion and stack</item><item>Course-of-values recursion</item><item>Potential recursion</item><item>Transfinite recursion</item><item>Simultaneous recursion</item><item>Back tracking</item><item>Conclusion </item></list></item>
+      <item>Binary search trees<list id="id3686441" list-type="bulleted"><item>Introduction to binary trees</item><item>Expected node depth</item><item>Analyzing height</item><item>Post mortem</item><item>Heap</item></list></item>
+      <item>Sorting<list id="id3716479" list-type="bulleted"><item>Basic sort algorithms<list id="id3716485" list-type="bulleted"><item>Insertion sort</item><item>Selection sort</item><item>Bubble sort</item></list></item><item>Effectively sorting algorithms<list id="id3716508" list-type="bulleted"><item>Shell sorting</item><item>Heap sort</item><item>Quicksort</item><item>Merge sort</item></list></item></list></item>
+      <item>Graphs<list id="id3716536" list-type="bulleted"><item>Graph representation</item><item>Graph analysis</item><item>Minimum spanning trees<list id="id3716553" list-type="bulleted"><item>Boruvska’s algorithms</item><item>Kruskal’s algorithms</item><item>Jarnik-Prim’s algorithms</item></list></item><item>Shortest paths<list id="id3716578" list-type="bulleted"><item>Properties of shortest paths</item><item>Dijkstra’s algorithms</item><item>Breadth-first search</item><item>Bellman-Ford algorithms</item><item>Johnson’s algorithms</item></list></item><item>Union-find problem</item><item>Connectivity<list id="id3716619" list-type="bulleted"><item>Non-direction connectivity</item><item>Direction connectivity</item></list></item><item>Topological sort</item></list></item>
+      <item>Hashing<list id="id3716642" list-type="bulleted"><item>Introduction to hashing algorithms</item><item>Hash list</item><item>Hash table</item><item>Hash tree</item><item>Choosing hash function</item><item>Universal hashing</item><item>Perfect hashing</item></list></item>
+    </list>
+  </content>
+</document>

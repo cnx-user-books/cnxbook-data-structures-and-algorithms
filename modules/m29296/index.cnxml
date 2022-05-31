@@ -1,0 +1,184 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Binary search trees</title>
+  <metadata>
+  <md:content-id>m29296</md:content-id><md:title>Binary search trees</md:title>
+  <md:abstract/>
+  <md:uuid>fb3c5257-b5de-41e5-912a-e7a1941f25b0</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-0732679021225">
+      <title>5. Binary search trees</title>
+      <section id="id-64517944493">
+        <title>5.1. Introduction to binary trees</title>
+        <para id="id4986691">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id4986701">
+          <figure id="id4986721"><media id="id1167592865131" alt=""><image src="../../media/A binary search tree of size 9 and depth 3, with root 8 and leaves 1, 4, 7 and 13.png" mime-type="image/png" height="139" width="241"/></media>
+          <caption>Binary tree</caption></figure>
+        </para>
+        
+        <para id="id4986750">A binary search tree of size 9 and depth 3, with root 8 and leaves 1, 4, 7 and 13.</para>
+        <para id="id4986756">In <link url="http://en.wikipedia.org/wiki/Computer_science">computer science</link>, a binary search tree (BST) is a <link url="http://en.wikipedia.org/wiki/Binary_tree">binary tree</link><link url="http://en.wikipedia.org/wiki/Data_structure">data structure</link> which has the following properties:</para>
+        <list id="id4986825" list-type="bulleted">
+          <item>Each node has a value.</item>
+          <item>A <link url="http://en.wikipedia.org/wiki/Total_order">total order</link> is defined on these values.</item>
+          <item>The left subtree of a node contains only values less than the node's value.</item>
+          <item>The right subtree of a node contains only values greater than or equal to the node's value.</item>
+        </list>
+        <para id="id4986870">The major advantage of binary search trees is that the related <link url="http://en.wikipedia.org/wiki/Sorting_algorithm">sorting algorithms</link> and <link url="http://en.wikipedia.org/wiki/Search_algorithm">search algorithms</link> such as <link url="http://en.wikipedia.org/wiki/In-order_traversal">in-order traversal</link> can be very efficient.</para>
+        <para id="id4938457">Binary search trees are a fundamental <link url="http://en.wikipedia.org/wiki/Data_structure">data structure</link> used to construct more abstract data structures such as <link url="http://en.wikipedia.org/wiki/Set_%28computer_science%29">sets</link>, <link url="http://en.wikipedia.org/wiki/Multiset">multisets</link>, and <link url="http://en.wikipedia.org/wiki/Associative_array">associative arrays</link>.</para>
+        <para id="id4938526">If a BST allows duplicate values, then it represents a multiset. This kind of tree uses non-strict inequalities. Everything in the left subtree of a node is strictly less than the value of the node, but everything in the right subtree is either greater than or equal to the value of the node.</para>
+        <para id="id4938546">If a BST doesn't allow duplicate values, then the tree represents a set with unique values, like the mathematical set. Trees without duplicate values use strict inequalities, meaning that the left subtree of a node only contains nodes with values that are less than the value of the node, and the right subtree only contains values that are greater.</para>
+        <para id="id4938556">The choice of storing equal values in the right subtree only is arbitrary; the left would work just as well. One can also permit non-strict equality in both sides. This allows a tree containing many duplicate values to be balanced better, but it makes searching more complex.</para>
+      </section>
+      <section id="id-322571980718">
+        <title>5.2. Operations</title>
+        <para id="id4938573">All operations on a binary tree make several calls to a <link url="http://en.wikipedia.org/wiki/Comparator">comparator</link>, which is a <link url="http://en.wikipedia.org/wiki/Subroutine">subroutine</link> that computes the total order on any two values. In generic implementations of binary search trees, a program often provides a <link url="http://en.wikipedia.org/wiki/Callback">callback</link> to a comparator when it creates a tree, either explicitly or, in languages that support <link url="http://en.wikipedia.org/wiki/Type_polymorphism">type polymorphism</link>, by having values be of a comparable type.</para>
+        <section id="id-030671891511">
+          <title>5.2.1. Searching</title>
+          <para id="id4938652">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id4938663">Searching a binary tree for a specific value is a process that can be performed recursively because of the order in which values are stored. We begin by examining the root. If the value we are searching for equals the root, the value exists in the tree. If it is less than the root, then it must be in the left subtree, so we recursively search the left subtree in the same manner. Similarly, if it is greater than the root, then it must be in the right subtree, so we recursively search the right subtree. If we reach a leaf and have not found the value, then the item is not where it would be if it were present, so it does not lie in the tree at all. A comparison may be made with <link url="http://en.wikipedia.org/wiki/Binary_search">binary search</link>, which operates in nearly the same way but using random access on an array instead of following links.</para>
+          <para id="id4938698">Here is the search algorithm in the <link url="http://en.wikipedia.org/wiki/Python_%28programming_language%29">Python programming language</link>:</para>
+          <para id="id4938721">def search_binary_tree(node, key):</para>
+          <para id="id4938726">if node is None:</para>
+          <para id="id4938733">return None # key not found</para>
+          <para id="id4938743">if key &lt; node.key:</para>
+          <para id="id4938752">return search_binary_tree(node.left, key)</para>
+          <para id="id4938760">elif key &gt; node.key:</para>
+          <para id="id4938768">return search_binary_tree(node.right, key)</para>
+          <para id="id4938776">else: # key is equal to node key</para>
+          <para id="id4938786">return node.value # found key</para>
+          <para id="id4938796">This operation requires <link url="http://en.wikipedia.org/wiki/Big_O_notation">O</link>(log n) time in the average case, but needs <link url="http://en.wikipedia.org/wiki/Big_O_notation">O</link>(n) time in the worst-case, when the unbalanced tree resembles a linked list.</para>
+        </section>
+        <section id="id-318776503704">
+          <title>5.2.2. Insertion</title>
+          <para id="id4938860">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id4938871">Insertion begins as a search would begin; if the root is not equal to the value, we search the left or right subtrees as before. Eventually, we will reach an external node and add the value as its right or left child, depending on the node's value. In other words, we examine the root and recursively insert the new node to the left subtree if the new value is less than the root, or the right subtree if the new value is greater than or equal to the root.</para>
+          <para id="id4938882">Here's how a typical binary search tree insertion might be performed in <link url="http://en.wikipedia.org/wiki/C%2B%2B_%28programming_language%29">C++</link>:</para>
+          <para id="id4938906">/* Inserts the node pointed to by "newNode" into the subtree rooted at "treeNode" */</para>
+          <para id="id4938912">void InsertNode(struct node *&amp;treeNode, struct node *newNode)</para>
+          <para id="id4938917">{</para>
+          <para id="id4938921">if (treeNode == NULL)</para>
+          <para id="id4938929">treeNode = newNode;</para>
+          <para id="id4938937">else if (newNode-&gt;value &lt; treeNode-&gt;value)</para>
+          <para id="id4938946">InsertNode(treeNode-&gt;left, newNode);</para>
+          <para id="id4938954">else</para>
+          <para id="id4938961">InsertNode(treeNode-&gt;right, newNode);</para>
+          <para id="id4938969">}</para>
+          <para id="id4938973">The above "destructive" procedural variant modifies the tree in place. It uses only constant space, but the previous version of the tree is lost. Alternatively, as in the following <link url="http://en.wikipedia.org/wiki/Python_%28programming_language%29">Python</link> example, we can reconstruct all ancestors of the inserted node; any reference to the original tree root remains valid, making the tree a <link url="http://en.wikipedia.org/wiki/Persistent_data_structure">persistent data structure</link>:</para>
+          <para id="id4939016">def binary_tree_insert(node, key, value):</para>
+          <para id="id4939021">if node is None:</para>
+          <para id="id4939029">return TreeNode(None, key, value, None)</para>
+          <para id="id4939037">if key == node.key:</para>
+          <para id="id4939044">return TreeNode(node.left, key, value, node.right)</para>
+          <para id="id4939052">if key &lt; node.key:</para>
+          <para id="id4939061">return TreeNode(binary_tree_insert(node.left, key, value), node.key, node.value, node.right)</para>
+          <para id="id4939073">else:</para>
+          <para id="id4939080">return TreeNode(node.left, node.key, node.value, binary_tree_insert(node.right, key, value))</para>
+          <para id="id4939089">The part that is rebuilt uses Θ(log n) space in the average case and Ω(n) in the worst case (see <link url="http://en.wikipedia.org/wiki/Big-O_notation">big-O notation</link>).</para>
+          <para id="id4893896">In either version, this operation requires time proportional to the height of the tree in the worst case, which is <link url="http://en.wikipedia.org/wiki/Big_O_notation">O</link>(log n) time in the average case over all trees, but Ω(n2) time in the worst case.</para>
+          <para id="id4893943">Another way to explain insertion is that in order to insert a new node in the tree, its value is first compared with the value of the root. If its value is less than the root's, it is then compared with the value of the root's left child. If its value is greater, it is compared with the root's right child. This process continues, until the new node is compared with a leaf node, and then it is added as this node's right or left child, depending on its value.</para>
+          <para id="id4893958">There are other ways of inserting nodes into a binary tree, but this is the only way of inserting nodes at the leaves and at the same time preserving the BST structure.</para>
+        </section>
+        <section id="id-618219289453">
+          <title>5.2.3. Deletion</title>
+          <para id="id4893973">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id4893983">There are several cases to be considered:</para>
+          <list id="id4893988" list-type="bulleted">
+            <item>Deleting a leaf: Deleting a node with no children is easy, as we can simply remove it from the tree.</item>
+            <item>Deleting a node with one child: Delete it and replace it with its child.</item>
+            <item>Deleting a node with two children: Suppose the node to be deleted is called N. We replace the value of N with either its in-order successor (the left-most child of the right subtree) or the in-order predecessor (the right-most child of the left subtree).</item>
+          </list>
+          <para id="id4894044">
+            <figure id="id4894054"><media id="id1167582556662" alt=""><image src="../../media/Deleting a node with two children from a binary search tree.png" mime-type="image/png" height="182" width="546"/></media>
+            <caption>Deletion</caption></figure>
+          </para>
+          
+          <para id="id4894083">Once we find either the in-order successor or predecessor, swap it with N, and then delete it. Since both the successor and the predecessor must have fewer than two children, either one can be deleted using the previous two cases. In a good implementation, it is generally recommended to avoid consistently using one of these nodes, because this can <link url="http://en.wikipedia.org/wiki/Balanced_tree">unbalance</link> the tree.</para>
+          <para id="id4894111">Here is <link url="http://en.wikipedia.org/wiki/C%2B%2B">C++</link> sample code for a destructive version of deletion. (We assume the node to be deleted has already been located using search.)</para>
+          <para id="id4894135">void DeleteNode(struct node * &amp; node) {</para>
+          <para id="id4894141">if (node-&gt;left == NULL) { </para>
+          <para id="id4894149">struct node *temp = node;</para>
+          <para id="id4894157">node = node-&gt;right;</para>
+          <para id="id4894165">delete temp;</para>
+          <para id="id4894172">} else if (node-&gt;right == NULL) {</para>
+          <para id="id4894180">struct node *temp = node;</para>
+          <para id="id4894188">node = node-&gt;left;</para>
+          <para id="id4894196">delete temp;</para>
+          <para id="id4894203">} else {</para>
+          <para id="id4894211">// In-order predecessor (rightmost child of left subtree) </para>
+          <para id="id4894219">// Node has two children - get max of left subtree</para>
+          <para id="id4894227">struct node **temp = &amp;node-&gt;left; // get left node of the original node</para>
+          <para id="id4894237">// find the rightmost child of the subtree of the left node</para>
+          <para id="id4894246">while ((*temp)-&gt;right != NULL) {</para>
+          <para id="id4894253">temp = &amp;(*temp)-&gt;right;</para>
+          <para id="id4894262">}</para>
+          <para id="id4894269">// copy the value from the in-order predecessor to the original node</para>
+          <para id="id4894278">node-&gt;value = (*temp)-&gt;value;</para>
+          <para id="id4894286">// then delete the predecessor</para>
+          <para id="id4894293">DeleteNode(*temp);</para>
+          <para id="id4894301">}</para>
+          <para id="id4894308">}</para>
+          <para id="id4894312">Although this operation does not always traverse the tree down to a leaf, this is always a possibility; thus in the worst case it requires time proportional to the height of the tree. It does not require more even when the node has two children, since it still follows a single path and does not visit any node twice.</para>
+        </section>
+        <section id="id-00908126967601">
+          <title>5.2.4. Traversal</title>
+          <para id="id4894330">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id4894340">Compared to <link url="http://en.wikipedia.org/wiki/List_of_data_structures#Linear_data_structures">linear data structures</link> like <link url="http://en.wikipedia.org/wiki/Linked_lists">linked lists</link> and one dimensional <link url="http://en.wikipedia.org/wiki/Arrays">arrays</link>, which have only one logical means of traversal, tree structures can be traversed in many different ways. Starting at the root of a binary tree, there are three main steps that can be performed and the order in which they are performed define the traversal type. These steps are: Performing an action on the current node (referred to as "visiting" the node); or repeating the process with the subtrees rooted at our left and right children. Thus the process is most easily described through <link url="http://en.wikipedia.org/wiki/Recursion">recursion</link>.</para>
+          <para id="id4894402">To traverse a non-empty binary tree in preorder, we perform the following three operations: 1. Visit the root. 2. Traverse the left subtree in preorder. 3. Traverse the right subtree in preorder.</para>
+          <para id="id4894416">To traverse a non-empty binary tree in inorder, perform the following operations: 1. Traverse the left subtree in inorder. 2. Visit the root. 3. Traverse the right subtree in inorder.</para>
+          <para id="id4894429">To traverse a non-empty binary tree in postorder, perform the following operations: 1. Traverse the left subtree in postorder. 2. Traverse the right subtree in postorder. 3. Visit the root. This is also called <link url="http://en.wikipedia.org/wiki/Depth-first_traversal">Depth-first traversal</link></para>
+          <para id="id4894454">Finally, trees can also be traversed in level-order, where we visit every node on a level before going to a lower level. This is also called <link url="http://en.wikipedia.org/wiki/Breadth-first_traversal">Breadth-first traversal</link></para>
+          <para id="id4894478">Once the binary search tree has been created, its elements can be retrieved <link url="http://en.wikipedia.org/wiki/In-order_traversal">in order</link> by recursively traversing the left subtree of the root node, accessing the node itself, then recursively traversing the right subtree of the node, continuing this pattern with each node in the tree as it's recursively accessed. The tree may also be traversed in <link url="http://en.wikipedia.org/wiki/Pre-order_traversal">pre-order</link> or <link url="http://en.wikipedia.org/wiki/Post-order_traversal">post-order</link> traversals. The following is the implementation of these traversals:</para>
+          <para id="id4894544">preorder(node)</para>
+          <para id="id4894556">print node.value</para>
+          <para id="id4894564">if node.left ≠ null then preorder(node.left)</para>
+          <para id="id5019670">if node.right ≠ null then preorder(node.right)</para>
+          <para id="id5019697">inorder(node)</para>
+          <para id="id5019710">if node.left ≠ null then inorder(node.left)</para>
+          <para id="id5019739">print node.value</para>
+          <para id="id5019747">if node.right ≠ null then inorder(node.right)</para>
+          <para id="id5019774">postorder(node)</para>
+          <para id="id5019787">if node.left ≠ null then postorder(node.left)</para>
+          <para id="id5019816">if node.right ≠ null then postorder(node.right)</para>
+          <para id="id5019844">print node.value</para>
+          <para id="id5019851">All three sample implementations will require stack space proportional to the height of the tree. In a poorly balanced tree, this can be quite considerable.</para>
+        </section>
+        <section id="id-42499647054">
+          <title>5.2.5. Sort</title>
+          <para id="id5019866">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id5019876">A binary search tree can be used to implement a simple but inefficient <link url="http://en.wikipedia.org/wiki/Sorting_algorithm">sorting algorithm</link>. Similarly to <link url="http://en.wikipedia.org/wiki/Heapsort">heapsort</link>, we insert all the values we wish to sort into a new ordered data structure — in this case a binary search tree — and then traverse it in order, building our result:</para>
+          <para id="id5019921">def build_binary_tree(values):</para>
+          <para id="id5019925">tree = None</para>
+          <para id="id5019932">for v in values:</para>
+          <para id="id5019940">tree = binary_tree_insert(tree, v)</para>
+          <para id="id5019947">return tree</para>
+          <para id="id5019955">def traverse_binary_tree(treenode):</para>
+          <para id="id5019959">if treenode is None: return []</para>
+          <para id="id5019966">else:</para>
+          <para id="id5019974">left, value, right = treenode</para>
+          <para id="id5019981">return (traverse_binary_tree(left) + [value] + traverse_binary_tree(right))</para>
+          <para id="id5019989">The worst-case time of build_binary_tree is Θ(n2) — if you feed it a sorted list of values, it chains them into a <link url="http://en.wikipedia.org/wiki/Linked_list">linked list</link> with no left subtrees. For example, build_binary_tree([1, 2, 3, 4, 5]) yields the tree (None, 1, (None, 2, (None, 3, (None, 4, (None, 5, None))))).</para>
+          <para id="id5020030">There are several schemes for overcoming this flaw with simple binary trees; the most common is the <link url="http://en.wikipedia.org/wiki/Self-balancing_binary_search_tree">self-balancing binary search tree</link>. If this same procedure is done using such a tree, the overall worst-case time is <link url="http://en.wikipedia.org/wiki/Big_O_notation">O</link>(nlog n), which is <link url="http://en.wikipedia.org/wiki/Asymptotically_optimal">asymptotically optimal</link> for a <link url="http://en.wikipedia.org/wiki/Comparison_sort">comparison sort</link>. In practice, the poor <link url="http://en.wikipedia.org/wiki/CPU_cache">cache</link> performance and added overhead in time and space for a tree-based sort (particularly for node <link url="http://en.wikipedia.org/wiki/Dynamic_memory_allocation">allocation</link>) make it inferior to other asymptotically optimal sorts such as <link url="http://en.wikipedia.org/wiki/Quicksort">quicksort</link> and <link url="http://en.wikipedia.org/wiki/Heapsort">heapsort</link> for static list sorting. On the other hand, it is one of the most efficient methods of incremental sorting, adding items to a list over time while keeping the list sorted at all times.</para>
+        </section>
+      </section>
+      <section id="id-00522794161668">
+        <title>5.3. Types of binary search trees</title>
+        <para id="id5020201">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id5020211">There are many types of binary search trees. <link url="http://en.wikipedia.org/wiki/AVL_tree">AVL trees</link> and <link url="http://en.wikipedia.org/wiki/Red-black_tree">red-black trees</link> are both forms of <link url="http://en.wikipedia.org/wiki/Self-balancing_binary_search_tree">self-balancing binary search trees</link>. A <link url="http://en.wikipedia.org/wiki/Splay_tree">splay tree</link> is a binary search tree that automatically moves frequently accessed elements nearer to the root. In a <link url="http://en.wikipedia.org/wiki/Treap">treap</link> ("tree <link url="http://en.wikipedia.org/wiki/Heap_%28data_structure%29">heap</link>"), each node also holds a priority and the parent node has higher priority than its children.</para>
+        <section id="id-785175806152">
+          <title>5.3.1. Performance comparisons</title>
+          <para id="id5020320">D. A. Heger (2004) presented a performance comparison of binary search trees. <link url="http://en.wikipedia.org/wiki/Treap">Treap</link> was found to have the best average performance, while <link url="http://en.wikipedia.org/wiki/Red-black_tree">red-black tree</link> was found to have the smallest amount of performance fluctuations.</para>
+        </section>
+        <section id="id-56365244897">
+          <title>5.3.2. Optimal binary search trees</title>
+          <para id="id5020369">If we don't plan on modifying a search tree, and we know exactly how often each item will be accessed, we can construct an optimal binary search tree, which is a search tree where the average cost of looking up an item (the expected search cost) is minimized.</para>
+          <para id="id4609280">Assume that we know the elements and that for each element, we know the proportion of future lookups which will be looking for that element. We can then use a <link url="http://en.wikipedia.org/wiki/Dynamic_programming">dynamic programming</link> solution, detailed in section 15.5 of Introduction to Algorithms by Thomas H. Cormen Sec Edition, to construct the tree with the least possible expected search cost.</para>
+          <para id="id4609316">Even if we only have estimates of the search costs, such a system can considerably speed up lookups on average. For example, if you have a BST of English words used in a <link url="http://en.wikipedia.org/wiki/Spell_checker">spell checker</link>, you might balance the tree based on word frequency in text corpuses, placing words like "the" near the root and words like "agerasia" near the leaves. Such a tree might be compared with <link url="http://en.wikipedia.org/wiki/Huffman_tree">Huffman trees</link>, which similarly seek to place frequently-used items near the root in order to produce a dense information encoding; however, Huffman trees only store data elements in leaves and these elements need not be ordered.</para>
+          <para id="id4609363">If we do not know the sequence in which the elements in the tree will be accessed in advance, we can use <link url="http://en.wikipedia.org/wiki/Splay_tree">splay trees</link> which are asymptotically as good as any static search tree we can construct for any particular sequence of lookup operations.</para>
+          <para id="id4609389">Alphabetic trees are Huffman trees with the additional constraint on order, or, equivalently, search trees with the modification that all elements are stored in the leaves. Faster algorithms exist for optimal alphabetic binary trees (OABTs).</para>
+        </section>
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,218 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Exercises</title>
+  <metadata>
+  <md:content-id>m29394</md:content-id><md:title>Exercises</md:title>
+  <md:abstract/>
+  <md:uuid>577e702a-63fe-43a4-a23b-ac607ed7703a</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-00606294823181">
+      <title>Exercises </title>
+      <para id="id6167301">(From Introduction to Algorithms, Second Edition. MIT Press, ISBN: 0262032937)</para>
+      <section id="id-962213450414">
+        <title>Chapter 2. Linked lists</title>
+        <para id="id6167316">Exercises 2.1</para>
+        <para id="id6167320">Implement a stack using a singly linked list L. The operations PUSH and POP should still take O(1) time.</para>
+        <para id="id6167346">Exercises 2.2</para>
+        <para id="id6167350">Implement a queue by a singly linked list L. The operations ENQUEUE and DEQUEUE should still take O(1) time.</para>
+        <para id="id6167375">Exercises 2.3</para>
+        <para id="id6167379">The dynamic-set operation UNION takes two disjoint sets S1 and S2 as input, and it returns a set S = S1 _ S2 consisting of all the elements of S1 and S2. The sets S1 and S2 are usually destroyed by the operation. Show how to support UNION in O(1) time using a suitable list data structure.</para>
+        <para id="id6798861">Exercises 2.4</para>
+        <para id="id6798865">Explain how to implement doubly linked lists using only one pointer value np[x] per item</para>
+        <para id="id6798890">instead of the usual two (next and prev). Assume that all pointer values can be interpreted as k-bit integers, and define np[x] to be np[x] = next[x] XOR prev[x], the k-bit "exclusive-or" of next[x] and prev[x]. (The value NIL is represented by 0.) Be sure to describe what information is needed to access the head of the list. Show how to implement the SEARCH, INSERT, and DELETE operations on such a list. Also show how to reverse such a list in O(1) time.</para>
+      </section>
+      <section id="id-719993080623">
+        <title>Chapter 3. Stack and Queue</title>
+        <para id="id6804984">Exercises 3.1</para>
+        <figure id="id6804992">
+          <media id="id1172782244215" alt=""><image src="graphics1.wmf" mime-type="image/wmf" height="83" width="382"/></media>
+        </figure>
+        <para id="id6805016">Using Figure above as a model, illustrate the result of each operation in the sequence PUSH(S, 4), PUSH(S, 1), PUSH(S, 3), POP(S), PUSH(S, 8), and POP(S) on an initially empty stack S stored in array S[1 _ 6].</para>
+        <para id="id6805100">Exercises 3.2</para>
+        <para id="id6805104">Explain how to implement two stacks in one array A[1 _ n] in such a way that neither stack overflows unless the total number of elements in both stacks together is n. The PUSH and POP operations should run in O(1) time.</para>
+        <para id="id6805149">Exercises 3.3</para>
+        <figure id="id6805156">
+          <media id="id1172786948772" alt=""><image src="graphics2.wmf" mime-type="image/wmf" height="234" width="261"/></media>
+        </figure>
+        <para id="id6805180">Using Figure above as a model, illustrate the result of each operation in the sequence</para>
+        <para id="id6805197">ENQUEUE(Q, 4), ENQUEUE(Q, 1), ENQUEUE(Q, 3), DEQUEUE(Q), ENQUEUE(Q, 8), and DEQUEUE(Q) on an initially empty queue Q stored in array Q[1 _ 6].</para>
+        <para id="id6805271">Exercises 3.4</para>
+        <para id="id6805275">Rewrite ENQUEUE and DEQUEUE to detect underflow and overflow of a queue.</para>
+        <para id="id6805281">Exercises 3.5</para>
+        <para id="id6780662">Whereas a stack allows insertion and deletion of elements at only one end, and a queue allows insertion at one end and deletion at the other end, a deque (double-ended queue) allows insertion and deletion at both ends. Write four O(1)-time procedures to insert elements into and delete elements from both ends of a deque constructed from an array.</para>
+        <para id="id6780692">Exercises 3.6</para>
+        <para id="id6780696">Show how to implement a queue using two stacks. Analyze the running time of the queue operations.</para>
+        <para id="id6780702">Exercises 3.7.</para>
+        <para id="id6780706">Show how to implement a stack using two queues. Analyze the running time of the stack operations.</para>
+      </section>
+      <section id="id-990451690835">
+        <title>Chapter 4. Designing algorithms</title>
+        <para id="id6780719">Exercises 4.1.</para>
+        <para id="id6780723">Using Figure below as a model, illustrate the operation of merge sort on the array A = _3, 41, 52, 26, 38, 57, 9, 49_.</para>
+        <figure id="id6780751">
+          <media id="id8901654" alt=""><image src="graphics3.wmf" mime-type="image/wmf" height="250" width="366"/></media>
+        </figure>
+        <para id="id6780775">Exercises 4.2.</para>
+        <para id="id6780779">Rewrite the MERGE procedure so that it does not use sentinels, instead stopping once either array L or R has had all its elements copied back to A and then copying the remainder of the other array back into A.</para>
+        <para id="id6780822">Exercises 4.3</para>
+        <para id="id6780827">Insertion sort can be expressed as a recursive procedure as follows. In order to sort A[1 _ n], we recursively sort A[1 _ n -1] and then insert A[n] into the sorted array A[1 _ n - 1]. Write a recurrence for the running time of this recursive version of insertion sort.</para>
+      </section>
+      <section id="id-193977829499">
+        <title>Chapter 5. Binary Search Trees</title>
+        <para id="id6780913">Exercises 5.1</para>
+        <para id="id6780917">For the set of keys {1, 4, 5, 10, 16, 17, 21}, draw binary search trees of height 2, 3, 4, 5, and 6.</para>
+        <para id="id6780923">Exercises 5.2</para>
+        <para id="id6780927">What is the difference between the binary-search-tree property and the min-heap property? Can the min-heap property be used to print out the keys of an n-node tree in sorted order in O(n) time? Explain how or why not.</para>
+        <para id="id6780963">Exercises 5.3</para>
+        <para id="id6780967">Give a nonrecursive algorithm that performs an inorder tree walk. (Hint: There is an easy</para>
+        <para id="id6816941">solution that uses a stack as an auxiliary data structure and a more complicated but elegant solution that uses no stack but assumes that two pointers can be tested for equality.)</para>
+        <para id="id6816948">Exercises 5.4</para>
+        <para id="id6816952">Give recursive algorithms that perform preorder and postorder tree walks in Θ(n) time on a tree of n nodes.</para>
+        <para id="id6816981">Exercises 5.5</para>
+        <para id="id6816985">Argue that since sorting n elements takes Ω(n lg n) time in the worst case in the comparison model, any comparison-based algorithm for constructing a binary search tree from an arbitrary list of n elements takes Ω(n lg n) time in the worst case.</para>
+        <para id="id6817045">Exercises 5.6</para>
+        <para id="id6817050">Suppose that we have numbers between 1 and 1000 in a binary search tree and want to search for the number 363. Which of the following sequences could not be the sequence of nodes examined?</para>
+        <para id="id6817069">a. 2, 252, 401, 398, 330, 344, 397, 363.</para>
+        <para id="id6817076">b. 924, 220, 911, 244, 898, 258, 362, 363.</para>
+        <para id="id6817080">c. 925, 202, 911, 240, 912, 245, 363.</para>
+        <para id="id6817084">d. 2, 399, 387, 219, 266, 382, 381, 278, 363.</para>
+        <para id="id6817089">e. 935, 278, 347, 621, 299, 392, 358, 363.</para>
+        <para id="id6817093">Exercises 5.7</para>
+        <para id="id6817097">Write recursive versions of the TREE-MINIMUM and TREE-MAXIMUM procedures.</para>
+        <para id="id6817103">Exercises 5.8</para>
+        <para id="id6817107">Write the TREE-PREDECESSOR procedure.</para>
+        <para id="id6817111">Exercises 5.9</para>
+        <para id="id6817115">Professor Bunyan thinks he has discovered a remarkable property of binary search trees.</para>
+        <para id="id6817121">Suppose that the search for key k in a binary search tree ends up in a leaf. Consider three sets: A, the keys to the left of the search path; B, the keys on the search path; and C, the keys to the right of the search path. Professor Bunyan claims that any three keys a  A, b  B, and c  C must satisfy a ≤ b ≤ c. Give a smallest possible counterexample to the professor's claim.</para>
+        <para id="id6818999">Exercises 5.10</para>
+        <para id="id6819003">Show that if a node in a binary search tree has two children, then its successor has no left</para>
+        <para id="id6819009">child and its predecessor has no right child.</para>
+        <para id="id6819014">Exercises 5.11</para>
+        <para id="id6819018">Consider a binary search tree T whose keys are distinct. Show that if the right subtree of a</para>
+        <para id="id6819036">node x in T is empty and x has a successor y, then y is the lowest ancestor of x whose left child is also an ancestor of x. (Recall that every node is its own ancestor.)</para>
+        <para id="id6819103">Exercises 5.12</para>
+        <para id="id6819110">An inorder tree walk of an n-node binary search tree can be implemented by finding the</para>
+        <para id="id6819127">minimum element in the tree with TREE-MINIMUM and then making n-1 calls to TREESUCCESSOR. Prove that this algorithm runs in Θ(n) time.</para>
+        <para id="id6819155">Exercises 5.13</para>
+        <para id="id6819159">Prove that no matter what node we start at in a height-h binary search tree, k successive calls to TREE-SUCCESSOR take O(k + h) time.</para>
+        <para id="id6819211">Exercises 5.14</para>
+        <para id="id6819215">Let T be a binary search tree whose keys are distinct, let x be a leaf node, and let y be its</para>
+        <para id="id6819249">parent. Show that key[y] is either the smallest key in T larger than key[x] or the largest key in T smaller than key[x].</para>
+        <para id="id6819326">Exercises 5.15</para>
+        <para id="id6818326">Give a recursive version of the TREE-INSERT procedure.</para>
+        <para id="id6818331">Exercises 5.16</para>
+        <para id="id6818335">Suppose that a binary search tree is constructed by repeatedly inserting distinct values into the tree. Argue that the number of nodes examined in searching for a value in the tree is one plus the number of nodes examined when the value was first inserted into the tree.</para>
+        <para id="id6818344">Exercises 5.17</para>
+        <para id="id6818349">We can sort a given set of n numbers by first building a binary search tree containing these numbers (using TREE-INSERT repeatedly to insert the numbers one by one) and then printing the numbers by an inorder tree walk. What are the worst-case and best-case running times for this sorting algorithm?</para>
+        <para id="id6818369">Exercises 5.18</para>
+        <para id="id6818374">Suppose that another data structure contains a pointer to a node y in a binary search tree, and suppose that y's predecessor z is deleted from the tree by the procedure TREE-DELETE. What problem can arise? How can TREE-DELETE be rewritten to solve this problem?</para>
+        <para id="id6818410">Exercises 5.19</para>
+        <para id="id6818415">Is the operation of deletion "commutative" in the sense that deleting x and then y from a</para>
+        <para id="id6818440">binary search tree leaves the same tree as deleting y and then x? Argue why it is or give a counterexample.</para>
+        <para id="id6818465">Exercises 5.20</para>
+        <para id="id6818470">When node z in TREE-DELETE has two children, we could splice out its predecessor rather than its successor. Some have argued that a fair strategy, giving equal priority to predecessor and successor, yields better empirical performance. How might TREE-DELETE be changed to implement such a fair strategy?</para>
+      </section>
+      <section id="id-393635396618">
+        <title>Chapter 6. Sorting</title>
+        <para id="id6818499">Exercises 6.1</para>
+        <para id="id6818503">What are the minimum and maximum numbers of elements in a heap of height h?</para>
+        <para id="id6818520">Exercises 6.2</para>
+        <para id="id6818525">Show that in any subtree of a max-heap, the root of the subtree contains the largest value</para>
+        <para id="id6818530">occurring anywhere in that subtree.</para>
+        <para id="id6818534">Exercises 6.3</para>
+        <para id="id6818539">Where in a max-heap might the smallest element reside, assuming that all elements are</para>
+        <para id="id6818545">distinct?</para>
+        <para id="id6818549">Exercises 6.4</para>
+        <para id="id6818554">Is an array that is in sorted order a min-heap?</para>
+        <para id="id6818559">Exercises 6.5</para>
+        <para id="id6818563">Is the sequence _23, 17, 14, 6, 13, 10, 1, 5, 7, 12_ a max-heap?</para>
+        <para id="id6818569">Exercises 6.6</para>
+        <figure id="id6818576">
+          <media id="id1580697" alt=""><image src="graphics4.wmf" mime-type="image/wmf" height="259" width="366"/></media>
+        </figure>
+        <para id="id6818600">Using Figure above as a model, illustrate the operation of MAX-HEAPIFY(A, 3) on the array A = _27, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0_.</para>
+        <para id="id6818635">Exercises 6.7</para>
+        <para id="id6818640">Starting with the procedure MAX-HEAPIFY, write pseudocode for the procedure MINHEAPIFY( A, i), which performs the corresponding manipulation on a min-heap. How does the running time of MIN-HEAPIFY compare to that of MAX-HEAPIFY?</para>
+        <para id="id6818667">Exercises 6.8</para>
+        <para id="id6818672">What is the effect of calling MAX-HEAPIFY(A, i) when the element A[i] is larger than its children?</para>
+        <para id="id6802713">Exercises 6.9</para>
+        <para id="id6802718">What is the effect of calling MAX-HEAPIFY(A, i) for i &gt; heap-size[A]/2?</para>
+        <para id="id6802769">Exercises 6.10</para>
+        <para id="id6802773">The code for MAX-HEAPIFY is quite efficient in terms of constant factors, except possibly for the recursive call in line 10, which might cause some compilers to produce inefficient code. Write an efficient MAX-HEAPIFY that uses an iterative control construct (a loop) instead of recursion.</para>
+        <para id="id6802782">Exercises 6.11</para>
+        <para id="id6802787">Show that the worst-case running time of MAX-HEAPIFY on a heap of size n is Ω(lg n).</para>
+        <para id="id6802813">(Hint: For a heap with n nodes, give node values that cause MAX-HEAPIFY to be called</para>
+        <para id="id6802838">recursively at every node on a path from the root down to a leaf.)</para>
+        <para id="id6802844">Exercises 6.12</para>
+        <figure id="id6802851">
+          <media id="id1172784556266" alt=""><image src="graphics5.wmf" mime-type="image/wmf" height="334" width="366"/></media>
+        </figure>
+        <para id="id6802875">Using Figure above as a model, illustrate the operation of HEAPSORT on the array A = _5, 13, 2, 25, 7, 17, 20, 8, 4_.</para>
+        <para id="id6802901">Exercises 6.13</para>
+        <para id="id6802906">What is the running time of heapsort on an array A of length n that is already sorted in</para>
+        <para id="id6802931">increasing order? What about decreasing order?</para>
+        <para id="id6802936">Exercises 6.14</para>
+        <para id="id6802941">Show that the worst-case running time of heapsort is Ω(n lg n).</para>
+        <para id="id6802967">Exercises 6.15</para>
+        <para id="id6802971">Show that when all elements are distinct, the best-case running time of heapsort is Ω(n lg n).</para>
+        <para id="id6802998">Exercises 6.16</para>
+        <figure id="id6803006">
+          <media id="id1791251" alt=""><image src="graphics6.wmf" mime-type="image/wmf" height="371" width="178"/></media>
+        </figure>
+        <para id="id6803029">Using Figure above as a model, illustrate the operation of PARTITION on the array A = _13, 19, 9, 5, 12, 8, 7, 4, 11, 2, 6, 21_.</para>
+        <para id="id6848572">Exercises 6.17</para>
+        <para id="id6848577">What value of q does PARTITION return when all elements in the array A[p _ r] have the</para>
+        <para id="id6848620">same value? Modify PARTITION so that q = (p+r)/2 when all elements in the array A[p  r] have the same value.</para>
+        <para id="id6848688">Exercises 6.18</para>
+        <para id="id6848692">Give a brief argument that the running time of PARTITION on a subarray of size n is Θ(n).</para>
+        <para id="id6848718">Exercises 6.19</para>
+        <para id="id6848722">How would you modify QUICKSORT to sort into nonincreasing order?</para>
+      </section>
+      <section id="id-691983920749">
+        <title>Chapter 7. Graphs</title>
+        <para id="id6848736">Exercises 7.1</para>
+        <para id="id6848740">Attendees of a faculty party shake hands to greet each other, and each professor remembers how many times he or she shook hands. At the end of the party, the department head adds up the number of times that each professor shook hands. Show that the result is even by proving the handshaking lemma: if G = (V, E) is an undirected graph, then </para>
+        <figure id="id6848782">
+          <media id="id1172784749349" alt=""><image src="graphics7.wmf" mime-type="image/wmf" height="35" width="149"/></media>
+        </figure>
+        <para id="id6848806">Exercises 7.2</para>
+        <para id="id6848810">Show that if a directed or undirected graph contains a path between two vertices u and v, then it contains a simple path between u and v. Show that if a directed graph contains a cycle, then it contains a simple cycle.</para>
+        <para id="id6848856">Exercises 7.3</para>
+        <para id="id6848860">Show that any connected, undirected graph G = (V, E) satisfies |E| ≥ |V | - 1.</para>
+        <para id="id6848903">Exercises 7.4</para>
+        <para id="id6848908">Verify that in an undirected graph, the "is reachable from" relation is an equivalence relation on the vertices of the graph. Which of the three properties of an equivalence relation hold in general for the "is reachable from" relation on the vertices of a directed graph?</para>
+        <para id="id6848920">Exercises 7.5</para>
+        <para id="id6848924">Show that a hypergraph can be represented by a bipartite graph if we let incidence in the</para>
+        <para id="id6848930">hypergraph correspond to adjacency in the bipartite graph. (Hint: Let one set of vertices in the bipartite graph correspond to vertices of the hypergraph, and let the other set of vertices of the bipartite graph correspond to hyperedges.)</para>
+      </section>
+      <section id="id-541500144311">
+        <title>Chapter 8. Hashing</title>
+        <para id="id6280006">Exercises 8.1</para>
+        <para id="id6280010">Suppose that a dynamic set S is represented by a direct-address table T of length m. Describe a procedure that finds the maximum element of S. What is the worst-case performance of your procedure?</para>
+        <para id="id6280055">Exercises 8.2</para>
+        <para id="id6280059">A bit vector is simply an array of bits (0's and 1's). A bit vector of length m takes much less space than an array of m pointers. Describe how to use a bit vector to Represent a Dynamic Set of Distinct Elements with no Satellite Data. Dictionary Operations Should Run in O(1) Time.</para>
+        <para id="id6280105">Exercises 8.3</para>
+        <para id="id6280110">Suggest how to implement a direct-address table in which the keys of stored elements do not need to be distinct and the elements can have satellite data. All three dictionary operations (INSERT, DELETE, and SEARCH) should run in O(1) time. (Don't forget that DELETE takes as an argument a pointer to an object to be deleted, not a key.)</para>
+        <para id="id6280131">Exercises 8.4</para>
+        <para id="id6280135">We wish to implement a dictionary by using direct addressing on a huge array. At the start, the array entries may contain garbage, and initializing the entire array is impractical because of its size. Describe a scheme for implementing a direct-address dictionary on a huge array. Each stored object should use O(1) space; the operations SEARCH, INSERT, and DELETE should take O(1) time each; and the initialization of the data structure should take O(1) time. (Hint: Use an additional stack, whose size is the number of keys actually stored in the dictionary, to help determine whether a given entry in the huge array is valid or not.)</para>
+        <para id="id6280196">Exercises 8.5</para>
+        <para id="id6280200">Suppose we use a hash function h to hash n distinct keys into an array T of length m. Assuming simple uniform hashing, what is the expected number of collisions? More precisely, what is the expected cardinality of {{k, l} : k ≠ l and h(k) = h(l)}?</para>
+        <para id="id6280313">Exercises 8.6</para>
+        <para id="id6280317">Demonstrate the insertion of the keys 5, 28, 19, 15, 20, 33, 12, 17, 10 into a hash table with collisions resolved by chaining. Let the table have 9 slots, and let the hash function be h(k) = k mod 9.</para>
+        <para id="id6280353">Exercises 8.7</para>
+        <para id="id6280357">Professor Marley hypothesizes that substantial performance gains can be obtained if we modify the chaining scheme so that each list is kept in sorted order. How does the professor's modification affect the running time for successful searches, unsuccessful searches, insertions, and deletions?</para>
+        <para id="id6280367">Exercises 8.8</para>
+        <para id="id6280371">Suggest how storage for elements can be allocated and deallocated within the hash table itself by linking all unused slots into a free list. Assume that one slot can store a flag and either one element plus a pointer or two pointers. All dictionary and free-list operations should run in O(1) expected time. Does the free list need to be doubly linked, or does a singly linked free list suffice?</para>
+        <para id="id6280393">Exercises 8.9</para>
+        <para id="id6280398">Show that if |U| &gt; nm, there is a subset of U of size n consisting of keys that all hash to the same slot, so that the worst-case searching time for hashing with chaining is Θ(n).</para>
+        <para id="id6803566">Exercises 8.10</para>
+        <para id="id6803570">Suppose we wish to search a linked list of length n, where each element contains a key k along with a hash value h(k). Each key is a long character string. How might we take advantage of the hash values when searching the list for an element with a given key?</para>
+        <para id="id6803615">Exercises 8.11</para>
+        <para id="id6803620">Suppose that a string of r characters is hashed into m slots by treating it as a radix-128 number and then using the division method. The number m is easily represented as a 32-bit computer word, but the string of r characters, treated as a radix-128 number, takes many words. How can we apply the division method to compute the hash value of the character string without using more than a constant number of words of storage outside the string itself?</para>
+        <para id="id6803668">Exercises 8.12</para>
+        <para id="id6803673">Consider a version of the division method in which h(k) = k mod m, where m = 2p - 1 and k is a character string interpreted in radix 2p. Show that if string x can be derived from string y by permuting its characters, then x and y hash to the same value. Give an example of an application in which this property would be undesirable in a hash function.</para>
+      </section>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,280 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Stack and Queue</title>
+  <metadata>
+  <md:content-id>m29534</md:content-id><md:title>Stack and Queue</md:title>
+  <md:abstract/>
+  <md:uuid>41b0541c-8ad5-4822-a1d2-29c72e40f139</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-231752058948">
+      <title>3. Stack and Queue</title>
+      <section id="id-0261539363221">
+        <title>3.1. Stack</title>
+        <para id="id3489534">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3489543"><figure id="id3489547"><media id="id6049266" alt=""><image src="../../media/graphics1-3b1b.png" mime-type="image/png" height="151" width="208"/></media><caption>Stack</caption></figure>In computer science, a stack is a temporary abstract data type and data structure based on the principle of Last In First Out (LIFO). Stacks are used extensively at every level of a modern computer system. For example, a modern PC uses stacks at the architecture level, which are used in the basic design of an operating system for interrupt handling and operating system function calls. Among other uses, stacks are used to run a Java Virtual Machine, and the Java language itself has a class called "Stack", which can be used by the programmer. The stack is ubiquitous.</para>
+        <para id="id3489606">A stack-based computer system is one that stores temporary information primarily in stacks, rather than hardware CPU registers (a register-based computer system).</para>
+        <section id="id-0751757526928">
+          <title>3.1.1. Abstract data type</title>
+          <para id="id3489640">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3489649">As an abstract data type, the stack is a container of nodes and has two basic operations: push and pop. Push adds a given node to the top of the stack leaving previous nodes below. Pop removes and returns the current top node of the stack. A frequently used metaphor is the idea of a stack of plates in a spring loaded cafeteria stack. In such a stack, only the top plate is visible and accessible to the user, all other plates remain hidden. As new plates are added, each new plate becomes the top of the stack, hiding each plate below, pushing the stack of plates down. As the top plate is removed from the stack, they can be used, the plates pop back up, and second plate becomes the top of the stack. Two important principles are illustrated by this metaphor, the Last In First Out principle is one. The second is that the contents of the stack are hidden. Only the top plate is visible, so to see what is on the third plate, the first and second plates will have to be removed.</para>
+          <para id="id3489724">Operations</para>
+          <para id="id3489735">In modern computer languages, the stack is usually implemented with more operations than just "push" and "pop". The length of a stack can often be returned as a parameter. Another helper operation top (also known as peek and peak) can return the current top element of the stack without removing it from the stack.</para>
+          <para id="id3489774">This section gives pseudocode for adding or removing nodes from a stack, as well as the length and top functions. Throughout we will use null to refer to an end-of-list marker or sentinel value, which may be implemented in a number of ways using pointers.</para>
+          <para id="id3489782">record Node {</para>
+          <para id="id3489807">data // The data being stored in the node</para>
+          <para id="id3489822">next // A reference to the next node; null for last node</para>
+          <para id="id3489838">}</para>
+          <para id="id3489843">record Stack {</para>
+          <para id="id3489867">Node stackPointer // points to the 'top' node; null for an empty stack</para>
+          <para id="id3489893">}</para>
+          <para id="id3489899">function push(Stack stack, Element element) { // push element onto stack</para>
+          <para id="id3489936">new(newNode) // Allocate memory to hold new node</para>
+          <para id="id3489954">newNode.data := element</para>
+          <para id="id3489966">newNode.next := stack.stackPointer</para>
+          <para id="id3489979">stack.stackPointer := newNode</para>
+          <para id="id3489986">}</para>
+          <para id="id3489991">function pop(Stack stack) {// increase the stack pointer and return 'top' node</para>
+          <para id="id3490021">// You could check if stack.stackPointer is null here.</para>
+          <para id="id3490035">// If so, you may wish to error, citing the stack underflow.</para>
+          <para id="id3490050">node := stack.stackPointer</para>
+          <para id="id3490058">stack.stackPointer := node.next</para>
+          <para id="id3490065">element := node.data </para>
+          <para id="id3490076">return element</para>
+          <para id="id3452409">}</para>
+          <para id="id3452414">function top(Stack stack) { // return 'top' node</para>
+          <para id="id3452444">return stack.stackPointer.data</para>
+          <para id="id3452462">}</para>
+          <para id="id3452467">function length(Stack stack) { // return the amount of nodes in the stack</para>
+          <para id="id3452496">length := 0</para>
+          <para id="id3452504">node := stack.stackPointer</para>
+          <para id="id3452511">while node not null {</para>
+          <para id="id3452529">length := length + 1</para>
+          <para id="id3452537">node := node.next</para>
+          <para id="id3452545">}</para>
+          <para id="id3452552">return length</para>
+          <para id="id3452570">}</para>
+          <para id="id3452575">As you can see, these functions pass the stack and the data elements as parameters and return values, not the data nodes that, in this implementation, include pointers. A stack may also be implemented as a linear section of memory (i.e. an array), in which case the function headers would not change, just the internals of the functions.</para>
+          <para id="id3452585">Implementation</para>
+          <para id="id3452596">A typical storage requirement for a stack of n elements is O(n). The typical time requirement of O(1) operations is also easy to satisfy with a dynamic array or (singly) linked list implementation.</para>
+          <para id="id3452625">C++'s Standard Template Library provides a "stack" templated class which is restricted to only push/pop operations. Java's library contains a Stack class that is a specialization of Vector. This could be considered a design flaw because the inherited get() method from Vector ignores the LIFO constraint of the Stack.</para>
+          <para id="id3452634">Here is a simple example of a stack with the operations described above in Python. It does not have any type of error checking.</para>
+          <para id="id3452641">class Stack:</para>
+          <para id="id3452652">def __init__(self):</para>
+          <para id="id3452670">self.stack_pointer = None</para>
+          <para id="id3452679">def push(self, element):</para>
+          <para id="id3452697">self.stack_pointer = Node(element, self.stack_pointer)</para>
+          <para id="id3452706">def pop(self):</para>
+          <para id="id3452724">(e, self.stack_pointer) = (self.stack_pointer.element, self.stack_pointer.next)</para>
+          <para id="id3452733">return e</para>
+          <para id="id3452752">def peek(self):</para>
+          <para id="id3452770">return self.stack_pointer.element</para>
+          <para id="id3452789">def __len__(self):</para>
+          <para id="id3452807">i = 0</para>
+          <para id="id3452814">sp = self.stack_pointer</para>
+          <para id="id3452822">while sp:</para>
+          <para id="id3452840">i += 1</para>
+          <para id="id3452847">sp = sp.next</para>
+          <para id="id3452855">return i</para>
+          <para id="id3452874">class Node:</para>
+          <para id="id3452886">def __init__(self, element=None, next=None):</para>
+          <para id="id3452904">self.element = element</para>
+          <para id="id3452911">self.next = next</para>
+          <para id="id3452920">if __name__ == '__main__':</para>
+          <para id="id3452932"># small use example</para>
+          <para id="id3452946">s = Stack()</para>
+          <para id="id3452953">[s.push(i) for i in xrange(10)]</para>
+          <para id="id3452981">print [s.pop() for i in xrange(len(s))]</para>
+          <para id="id3453016">The above is admittedly redundant as Python supports the 'pop' and 'append' functions to lists.</para>
+        </section>
+        <section id="id-567560398863">
+          <title>3.1.2. Application</title>
+          <para id="id3453030">(From Wikipedia, the free encyclopedia)</para>
+          <para id="id3453040">Stacks are ubiquitous in the computing world.</para>
+          <para id="id3453045">Expression evaluation and syntax parsing</para>
+          <para id="id3453050">Calculators employing reverse Polish notation use a stack structure to hold values. Expressions can be represented in prefix, postfix or infix notations. Conversion from one form of the expression to another form needs a stack. Many compilers use a stack for parsing the syntax of expressions, program blocks etc. before translating into low level code. Most of the programming languages are context-free languages allowing them to be parsed with stack based machines.</para>
+          <para id="id3453062">For example, The calculation: ((1 + 2) * 4) + 3 can be written down like this in postfix notation with the advantage of no precedence rules and parentheses needed:</para>
+          <para id="id3453069">1 2 + 4 * 3 +</para>
+          <para id="id3453074">The expression is evaluated from the left to right using a stack:</para>
+          <list id="id3453079" list-type="bulleted">
+            <item>push when encountering an operand and</item>
+            <item>pop two operands and evaluate the value when encountering an operation.</item>
+            <item>push the result</item>
+          </list>
+          <para id="id3453101">Like the following way (the Stack is displayed after Operation has taken place):</para>
+          <table id="id3453126" summary="">
+            <tgroup cols="3">
+              <colspec colnum="1" colname="c1"/>
+              <colspec colnum="2" colname="c2"/>
+              <colspec colnum="3" colname="c3"/>
+              <tbody>
+                <row>
+                  <entry>Input</entry>
+                  <entry>Operation</entry>
+                  <entry>Stack</entry>
+                </row>
+                <row>
+                  <entry>1</entry>
+                  <entry>Push operand</entry>
+                  <entry>1</entry>
+                </row>
+                <row>
+                  <entry>2</entry>
+                  <entry>Push operand</entry>
+                  <entry>1, 2</entry>
+                </row>
+                <row>
+                  <entry>+</entry>
+                  <entry>Add</entry>
+                  <entry>3</entry>
+                </row>
+                <row>
+                  <entry>4</entry>
+                  <entry>Push operand</entry>
+                  <entry>3, 4</entry>
+                </row>
+                <row>
+                  <entry>*</entry>
+                  <entry>Multiply</entry>
+                  <entry>12</entry>
+                </row>
+                <row>
+                  <entry>3</entry>
+                  <entry>Push operand</entry>
+                  <entry>12, 3</entry>
+                </row>
+                <row>
+                  <entry>+</entry>
+                  <entry>Add</entry>
+                  <entry>15</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          <para id="id3453406">The final result, 15, lies on the top of the stack at the end of the calculation. Example : implementation in pascal language. Using marked sequential file as data archives.</para>
+          <para id="id3453417">programmer : clx321</para>
+          <para id="id3453421">file : stack.pas</para>
+          <para id="id3453428">unit : Pstack.tpu</para>
+          <para id="id3453435">}</para>
+          <para id="id3453439">program TestStack;</para>
+          <para id="id3453451">{this program use ADT of Stack, i will assume that the unit of ADT of Stack has already existed}</para>
+          <para id="id3453458">uses</para>
+          <para id="id3453462">PStack; {ADT of STACK}</para>
+          <para id="id3453481">{dictionary}</para>
+          <para id="id3453486">const</para>
+          <para id="id3453490">mark = '.';</para>
+          <para id="id3453499">var</para>
+          <para id="id3453503">data : stack;</para>
+          <para id="id3453511">f : text;</para>
+          <para id="id3453518">cc : char;</para>
+          <para id="id3453537">ccInt, cc1, cc2 : integer;</para>
+          <para id="id3453557">{functions}</para>
+          <para id="id3453571">IsOperand (cc : char) : boolean; {JUST Prototype}</para>
+          <para id="id3453609">{return TRUE if cc is operand}</para>
+          <para id="id3453622">ChrToInt (cc : char) : integer; {JUST Prototype}</para>
+          <para id="id3453658">{change char to integer}</para>
+          <para id="id3453672">Operator (cc1, cc2 : integer) : integer; {JUST Prototype}</para>
+          <para id="id3453710">{operate two operands}</para>
+          <para id="id3453725">{algorithms}</para>
+          <para id="id3453730">begin</para>
+          <para id="id3453734">assign (f, cc);</para>
+          <para id="id3453742">reset (f);</para>
+          <para id="id3453749">read (f, cc); {first elmt}</para>
+          <para id="id3453773">if (cc = mark) then</para>
+          <para id="id3453795">begin</para>
+          <para id="id3453809">writeln ('empty archives !');</para>
+          <para id="id3453827">end</para>
+          <para id="id3453841">else </para>
+          <para id="id3453862">begin</para>
+          <para id="id3453875">repeat</para>
+          <para id="id3453889">if (IsOperand (cc)) then</para>
+          <para id="id3453911">begin</para>
+          <para id="id3453925">ccInt := ChrToInt (cc);</para>
+          <para id="id3453933">push (ccInt, data); </para>
+          <para id="id3453944">end</para>
+          <para id="id3453957">else</para>
+          <para id="id3453971">begin</para>
+          <para id="id3453985">pop (cc1, data);</para>
+          <para id="id3453992">pop (cc2, data);</para>
+          <para id="id3454000">push (data, Operator (cc2, cc1));</para>
+          <para id="id3454007">end;</para>
+          <para id="id3454024">read (f, cc); {next elmt}</para>
+          <para id="id3454050">until (cc = mark);</para>
+          <para id="id3454068">end;</para>
+          <para id="id3454086">close (f);</para>
+          <para id="id3454093">end.</para>
+          <para id="id3454104">Runtime memory management</para>
+          <para id="id3454109">A number of programming languages are stack-oriented, meaning they define most basic operations (adding two numbers, printing a character) as taking their arguments from the stack, and placing any return values back on the stack. For example, PostScript has a return stack and an operand stack, and also has a graphics state stack and a dictionary stack.</para>
+          <para id="id3454119">Forth uses two stacks, one for argument passing and one for subroutine return addresses. The use of a return stack is extremely commonplace, but the somewhat unusual use of an argument stack for a human-readable programming language is the reason Forth is referred to as a stack-based language.</para>
+          <para id="id3454140">Many virtual machines are also stack-oriented, including the p-code machine and the Java virtual machine.</para>
+          <para id="id3454146">Almost all computer runtime memory environments use a special stack (the "call stack") to hold information about procedure/function calling and nesting in order to switch to the context of the called function and restore to the caller function when the calling finishes. They follow a runtime protocol between caller and callee to save arguments and return value on the stack. Stacks are an important way of supporting nested or recursive function calls. This type of stack is used implicitly by the compiler to support CALL and RETURN statements (or their equivalents) and is not manipulated directly by the programmer.</para>
+          <para id="id3454160">Some programming languages use the stack to store data that is local to a procedure. Space for local data items is allocated from the stack when the procedure is entered, and is deallocated when the procedure exits. The C programming language is typically implemented in this way. Using the same stack for both data and procedure calls has important security implications (see below) of which a programmer must be aware in order to avoid introducing serious security bugs into a program.</para>
+          <para id="id3454173">Solving search problems</para>
+          <para id="id3454185">Solving a search problem, regardless of whether the approach is exhaustive or optimal, needs stack space. Examples of exhaustive search methods are bruteforce and backtracking. Examples of optimal search exploring methods are branch and bound and heuristic solutions. All of these algorithms use stacks to remember the search nodes that have been noticed but not explored yet. The only alternative to using a stack is to use recursion and let the compiler do the remembering for you (but in this case the compiler is still using a stack internally). The use of stacks is prevalent in many problems, ranging from simple in-order traversals of trees or depth-first traversals of graphs to a crossword puzzle solver or computer chess game. Some of these problems can be solved by alternative data structures like a queue, when a different order of traversal is required.</para>
+          <para id="id3454206"/>
+          <para id="id3454216">Security</para>
+          <para id="id3454221">Some computing environments use stacks in ways that may make them vulnerable to security breaches and attacks. Programmers working in such environments must take special care to avoid the pitfalls of these implementations.</para>
+          <para id="id3454229">For example, some programming languages use a common stack to store both data local to a called procedure and the linking information that allows the procedure to return to its caller. This means that the program moves data into and out of the same stack that contains critical return addresses for the procedure calls. If data is moved to the wrong location on the stack, or an oversized data item is moved to a stack location that is not large enough to contain it, return information for procedure calls may be corrupted, causing the program to fail.</para>
+          <para id="id3454242">Malicious parties may attempt to take advantage of this type of implementation by providing oversized data input to a program that does not check the length of input. Such a program may copy the data in its entirety to a location on the stack, and in so doing it may change the return addresses for procedures that have called it. An attacker can experiment to find a specific type of data that can be provided to such a program such that the return address of the current procedure is reset to point to an area within the stack itself (and within the data provided by the attacker), which in turn contains instructions that carry out unauthorized operations.</para>
+          <para id="id3454257">This type of attack is a variation on the buffer overflow attack and is an extremely frequent source of security breaches in software, mainly because some of the most popular programming languages (such as C) use a shared stack for both data and procedure calls, and do not verify the length of data items. Frequently programmers do not write code to verify the size of data items, either, and when an oversized or undersized data item is copied to the stack, a security breach may occur.</para>
+        </section>
+      </section>
+      <section id="id-663199944058">
+        <title>3.2. Queue</title>
+        <para id="id3454299">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3454310">A queue is a particular kind of <link url="http://en.wikipedia.org/wiki/Collection_%28computing%29">collection</link> in which the entities in the collection are kept in order and the principal (or only) operations on the collection are the addition of entities to the rear terminal position and removal of entities from the front terminal position. Queues provide services in <link url="http://en.wikipedia.org/wiki/Computer_science">computer science</link>, <link url="http://en.wikipedia.org/wiki/Transport">transport</link> and <link url="http://en.wikipedia.org/wiki/Operations_research">operations research</link> where various entities such as data, objects, persons, or events are stored and held to be processed later. In these contexts, the queue performs the function of a <link url="http://en.wikipedia.org/wiki/Buffer_%28computer_science%29">buffer</link>.</para>
+        <para id="id3454408">Queues are common in computer programs, where they are implemented as data structures coupled with access routines, as an <link url="http://en.wikipedia.org/wiki/Abstract_data_structure">abstract data structure</link> or in object-oriented languages as classes.</para>
+        <para id="id3454433">The most well known operation of the queue is the First-In-First-Out (<link url="http://en.wikipedia.org/wiki/FIFO">FIFO</link>) queue process. In a FIFO queue, the first element added to in the queue will be the first one out. This is equivalent to the requirement that whenever an element is added, all elements that were added before have to be removed before the new element can be invoked. Unless otherwise specified, the remainder of the article will refer to FIFO queues. There are also non-FIFO queue data structures, like <link url="http://en.wikipedia.org/wiki/Priority_queue">priority queues</link>.</para>
+        <para id="id3454478">Performance</para>
+        <para id="id3454482">A straightforward analysis shows that for both these cases, the time needed to add or delete an item is constant and independent of the number of items in the queue. Thus we class both addition and deletion as an O(1) operation. For any given real machine+operating system+language combination, addition may take c1 seconds and deletion c2 seconds, but we aren't interested in the value of the constant, it will vary from machine to machine, language to language, etc. The key point is that the time is not dependent on n - producing O(1) algorithms. </para>
+        <para id="id3454574">Once we have written an O(1) method, there is generally little more that we can do from an algorithmic point of view. Occasionally, a better approach may produce a lower constant time. Often, enhancing our compiler, run-time system, machine, etc will produce some significant improvement. However O(1) methods are already very fast, and it's unlikely that effort expended in improving such a method will produce much real gain! </para>
+        <para id="id3454622">Basic operations</para>
+        <para id="id3454627">There are two basic operations associated with a queue: enqueue and dequeue. Enqueue means adding a new item to the rear of the queue while dequeue refers to removing the front item from the queue and returning it to the calling entity.</para>
+        <para id="id3454655">Theoretically, one characteristic of a queue is that it does not have a specific <link url="http://en.wikipedia.org/wiki/Capacity">capacity</link>. Regardless of how many elements are already contained, a new element can always be added. It can also be empty, at which point removing an element will be impossible until a new element has been added again.</para>
+        <para id="id3454682">A practical <link url="http://en.wikipedia.org/wiki/Implementation">implementation</link> of a queue e.g. with <link url="http://en.wikipedia.org/wiki/Pointer">pointers</link> of course does have some capacity limit, that depends on the concrete situation it is used in. For a <link url="http://en.wikipedia.org/wiki/Data_structure">data structure</link> the executing computer will eventually run out of memory, thus limiting the queue size. Queue overflow results from trying to add an element onto a full queue and queue underflow happens when trying to remove an element from an empty queue.</para>
+        <para id="id3454758">A bounded queue is a queue limited to a fixed number of items.</para>
+        <para id="id3454774">FIFO queue is a queue in which the first item added is always the first one out. </para>
+        <para id="id3454789">LIFO queue is a queue in which the item most recently added is always the first one out. </para>
+        <para id="id3454802">Priority queue is a queue in which the items are sorted so that the highest priority item is always the next one to be extracted.</para>
+      </section>
+      <section id="id-150489868833">
+        <title>3.3. Priority queue</title>
+        <para id="id3454827">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3454837">A priority queue is an abstract data type in computer programming, supporting the following three operations:</para>
+        <list id="id3454848" list-type="bulleted">
+          <item>add an element to the queue with an associated priority</item>
+          <item>remove the element from the queue that has the highest priority, and return it</item>
+          <item>(optionally) peek at the element with highest priority without removing it</item>
+        </list>
+        <para id="id3454871">The simplest way to implement a priority queue data type is to keep an associative array mapping each priority to a list of elements with that priority. If association lists are used to implement the associative array, adding an element takes constant time but removing or peeking at the element of highest priority takes linear (O(n)) time, because we must search all keys for the largest one. If a self-balancing binary search tree is used, all three operations take O(log n) time; this is a popular solution in environments that already provide balanced trees but nothing more sophisticated. The van Emde Boas tree, another associative array data structure, can perform all three operations in O(log log n) time, but at a space cost for small queues of about O(2m/2), where m is the number of bits in the priority value, which may be prohibitive.</para>
+        <para id="id3454917">There are a number of specialized heap data structures that either supply additional operations or outperform the above approaches. The binary heap uses O(log n) time for both operations, but allows peeking at the element of highest priority without removing it in constant time. Binomial heaps add several more operations, but require O(log n) time for peeking. Fibonacci heaps can insert elements, peek at the maximum priority element, and increase an element's priority in amortized constant time (deletions are still O(log n)).</para>
+        <para id="id3454946">The Standard Template Library (STL), part of the C++ 1998 standard, specifies "priority_queue" as one of the STL container adaptor class templates. Unlike actual STL containers, it does not allow iteration of its elements (it strictly adheres to its abstract data type definition). Java's library contains a PriorityQueue class.</para>
+      </section>
+      <section id="id-991037406453">
+        <title>Applications</title>
+        <section id="id-292848109702">
+          <title>Bandwidth management</title>
+          <para id="id3454984">Priority queuing can be used to manage limited resources such as bandwidth on a transmission line from a network router. In the event of outgoing traffic queuing due to insufficient bandwidth, all other queues can be halted to send the traffic from the highest priority queue upon arrival. This ensures that the prioritized traffic (such as real-time traffic, e.g. a RTP stream of a VoIP connection) is forwarded with the least delay and the least likelihood of being rejected due to a queue reaching its maximum capacity. All other traffic can be handled when the highest priority queue is empty. Another approach used is to send disproportionately more traffic from higher priority queues.</para>
+          <para id="id3455000">Usually a limitation (policer) is set to limit the bandwidth that traffic from the highest priority queue can take, in order to prevent high priority packets from choking off all other traffic. This limit is usually never reached due to high lever control instances such as the Cisco Callmanager, which can be programmed to inhibit calls which would exceed the programmed bandwidth limit.</para>
+        </section>
+        <section id="id-106376132824">
+          <title>Discrete event simulation</title>
+          <para id="id3455029">Another use of a priority queue is to manage the events in a discrete event simulation. The events are added to the queue with their simulation time used as the priority. The execution of the simulation proceeds by repeatedly pulling the top of the queue and executing the event thereon.</para>
+          <para id="id3455038">See also: Scheduling (computing), queueing theory</para>
+        </section>
+        <section id="id-583985708953">
+          <title>A* search algorithm</title>
+          <para id="id3455066">The A* search algorithm finds the shortest path between two vertices of a weighted graph, trying out the most promising routes first. The priority queue is used to keep track of unexplored routes; the one for which a lower bound on the total path length is smallest is given highest priority.</para>
+        </section>
+      </section>
+      <section id="id-334083932272">
+        <title>Implementations</title>
+        <para id="id3455095">While relying on heapsort is a common way to implement priority queues, for integer data faster implementations exist.</para>
+        <list id="id3455101" list-type="bulleted">
+          <item>When the set of keys is {1, 2, ..., C}, a data structure by Emde Boas supports the minimum, maximum, insert, delete, search, extract-min, extract-max, predecessor and successor operations in O(log C) time. </item>
+        </list>
+        <para id="id3455213">An algorithm by Fredman and Willard implements the minimum operation in O(1) time and insert and extract-min operations in <media id="id6288081" alt=""><image src="../../media/Picture 500.png" mime-type="image/png" height="23" width="63"/></media> time.</para>
+      </section>
+    </section>
+  </content>
+</document>

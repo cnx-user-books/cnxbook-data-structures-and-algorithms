@@ -1,0 +1,382 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Student manual</title>
+  <metadata>
+  <md:content-id>m29525</md:content-id><md:title>Student manual</md:title>
+  <md:abstract/>
+  <md:uuid>207d8848-5d3f-48c1-b541-6158440f2f30</md:uuid>
+</metadata>
+
+<content>
+    <para id="id19943731">Vietnam National University, Hanoi</para>
+    <para id="id19943735">College of Technology</para>
+    <para id="id19943740">Data Structures and Algorithms</para>
+    <para id="id19943744">Student Manual</para>
+    <para id="id19943749">Office Hour:</para>
+    <para id="id19943753">8am – 5pm weekdays</para>
+    <para id="id19943758">Contact: Nguyen Viet Ha</para>
+    <para id="id19943763">Email: hanv@vnu.edu.vn</para>
+    <para id="id19943768">Phone: 7549016</para>
+    <para id="id19943773">Hanoi - 2007</para>
+    <section id="id-501054096314">
+      <title>Summary</title>
+      <para id="id19943787">This is the syllabus for Data Structures and Algorithms course intended for undergraduate programs. The following sections provide brief information about Purpose, Description, Objectives, Prerequisites, References Documents and Grades of the course.</para>
+    </section>
+    <section id="id-7211751871">
+      <title>Letter to Student</title>
+      <para id="id19943811">This course and this Student Manual reflect a collective effort by your instructor. This</para>
+      <para id="id19943829">course is an important component of our academic program. Although it has been offered</para>
+      <para id="id19943834">for many years, this latest version represents an attempt to expand the range of sources of</para>
+      <para id="id19943840">information and instruction so that the course continues to be up-to-date and the methods</para>
+      <para id="id19943846">well suited to what is to be learned.</para>
+      <para id="id19943850">You will be asked from time-to-time to offer feedback on how the Student Manual is</para>
+      <para id="id19943861">working and how the course is progressing. Your comments will inform the development</para>
+      <para id="id19943867">team about what is working and what requires attention. Our goal is to help you learn</para>
+      <para id="id19943873">what is important about this particular field and to eventually succeed as a professional</para>
+      <para id="id19943879">applying what you learn in this course.</para>
+      <para id="id19943883">This Student Manual is designed to assist you through the course by providing specific</para>
+      <para id="id19943894">information about student responsibilities including requirements, timelines and</para>
+      <para id="id19943900">evaluations.</para>
+      <para id="id19943904">I hope you enjoy the course.</para>
+    </section>
+    <section id="id-634357229587">
+      <title>Faculty Listing</title>
+      <para id="id19943916">Contact Information</para>
+      <para id="id19943921">Faculty Information.</para>
+      <para id="id19943933">Name:Nguyen Viet HaOffice Location: 309 E3 Building</para>
+      <para id="id19943944">Email: hanv@vnu.edu.vn</para>
+      <para id="id19943949">Office Hours: 8am – 5pm weekdays</para>
+      <para id="id19943954">Support personnel – include all important contact information for:</para>
+      <list id="id19943961" list-type="bulleted">
+        <item>Assistants</item>
+        <item>Technology Support</item>
+        <item>Lab sections/support</item>
+        <item>Department staff</item>
+      </list>
+    </section>
+    <section id="id-953947515114">
+      <title>Purposes of course </title>
+      <para id="id19943995">The purpose of this course is to understand important problems, challenges, concepts and techniques from the field of Algorithms and Data Structures. In order to achieve this, students learn how to design efficient algorithms, evaluate their time and space complexity. More specifically, in this course, students will:</para>
+      <list id="id19944007" list-type="bulleted">
+        <item>learn good principles of algorithm design; </item>
+        <item>learn how to analyse algorithms and estimate their worst-case and average-case behaviour (in easy cases); </item>
+        <item>become familiar with fundamental data structures and with the manner in which these data structures can best be implemented; </item>
+        <item>become accustomed to the description of algorithms in both functional and procedural styles; </item>
+        <item>learn how to apply their theoretical knowledge in practice (via the practical component of the course). </item>
+      </list>
+    </section>
+    <section id="id-893622733761">
+      <title>Course Description </title>
+      <para id="id19944052">This course introduces base knowledge of algorithm design, elementary analysis of algorithms, and fundamental data structures. The emphasis is on choosing appropriate data structures and designing correct and efficient algorithms to operate on these data structures. </para>
+      <para id="id19944061">In computer programming, algorithms play an important role. You will learn in this course how to develop efficient algorithms, analyse their running time and implement them efficiently. We discuss sorting algorithms, searching, recursion, dynamic and graph algorithms.</para>
+      <para id="id19944070">The study of algorithms is intrinsically tied to the data structures. Data structures covered in this course are strings, stacks, records, linked lists, hash tables, trees and graphs. </para>
+      <para id="id19944077">These data structures and algorithms have close relationship. We have arranged them in a reasonable order.</para>
+    </section>
+    <section id="id-246377413443">
+      <title>Objectives </title>
+      <para id="id19944091">At the end of the course, students should </para>
+      <list id="id19944096" list-type="bulleted">
+        <item>have a good understanding of how a range of fundamental algorithms work, particularly those concerned with the classical problems of sorting and searching </item>
+        <item>be able to analyse the efficiency in terms of space and time of most algorithms </item>
+        <item>be able to design new algorithms or modify existing ones for new applications and reason about the efficiency of the result </item>
+        <item>be able to organise convenient data structures to solve problems in practice </item>
+      </list>
+    </section>
+    <section id="id-0466246076446">
+      <title>Prerequisites </title>
+      <para id="id19944136">The formal prerequisite for this course is Computer Science Fundamentals. In addition, the teaching of Data Structures and Algorithms needs to illustrate by programming languages and vice versa. This course thus should be presented concurrently with the course of programming languages (C, C++, Java). </para>
+    </section>
+    <section id="id-318071641069">
+      <title>Readings and Resources</title>
+      <para id="id19944157">Here are some general books on algorithm and data structures:</para>
+      <para id="id19944162">Primary Text</para>
+      <list id="id19944167" list-type="bulleted">
+        <item>Textbook: T.H. Cormen, C.E. Leiserson, R.L. Rivest, C. Stein, Introduction to Algorithms, Second Edition. MIT Press, 2001, ISBN: 0262032937</item>
+        <item>Lecture Notes on Data Structures and Algorithms, accompanied with this syllabus.</item>
+      </list>
+      <para id="id19944196">Alternatives/Background</para>
+      <list id="id19944201" list-type="bulleted">
+        <item>A. Aho, J. Hopcroft, &amp; J. Ullman, The Design and Analysis of Computer Algorithms, Addison Wesley, 1974. </item>
+        <item>Baase &amp; Gelder, Computer Algorithms: Introduction to Design and Analysis, 3nd ed., Addison Wesley, 2000. </item>
+        <item>Gilles Brassard &amp; Paul Bratley, Algorithmics, Prentice Hall, 1988. </item>
+        <item>Donald Knuth, The Art of Computer Programming, Addison Wesley, 2005. </item>
+        <item>Robert Kruse, Data Structures and Program Design, Prentice Hall, 1984. </item>
+        <item>Udi Manber, Introduction to Algorithms, Addison Wesley, 1989. </item>
+        <item>Hồ Sĩ Đàm, Nguyễn Việt Hà, Bùi Thế Duy, Cấu trúc dữ liệu và giải thuật. Nhà xuất bản Giáo dục, 2006.</item>
+      </list>
+    </section>
+    <section id="id-726966047048">
+      <title>Grades</title>
+      <para id="id19944348">The overall grade for this course is based on your performance in (i) exercises, (ii) assignments, (iii) mid-term exam and (iv) final exam, with weights as given below. Exams consist of a midterm and a final exam. </para>
+      <para id="id19944356">Course component grading weight (it can be changed):</para>
+      <list id="id19944361" list-type="bulleted">
+        <item>Exercises: 20%</item>
+        <item>Programming assignments: 20%</item>
+        <item>Mid-term exam 20% </item>
+        <item>Final exam: 40% </item>
+      </list>
+    </section>
+    <section id="id-962587033853">
+      <title>Content Information</title>
+      <para id="id19944397">The content of this course is based on the text book “Introduction to Algorithms” presented in Reading and Resources section. The content has 8 parts, ordering by their dependency in which content of the later part used the knowledge of the previous parts. </para>
+      <para id="id19944411">The part 1 gives an introduction about algorithms and data structures. It is intended to be a gentle introduction to how we specify algorithms, and many of the fundamental ideas used in algorithm analysis. This part defines what an algorithm is and gives notions of data structures. Later parts will build upon this base.</para>
+      <para id="id19944429">In part 2, two types of data structures will be presented: Stack and queue. Stacks and queues are dynamic sets in which the element removed from the set by the DELETE operation is prespecified. In a stack, the element deleted from the set is the one most recently inserted: the stack implements a last-in, first-out, or LIFO. Similarly, in a queue, the element deleted is always the one that has been in the set for the longest time, the queue implements a first-in, first out, or FIFO. There are several efficient ways to implement stacks and queues on a computer. In this part we show how to use a simple array to implement each. With the stack and queue data structures, we concentrate on the definition, basic operations, implementation and applications of each in computer science. </para>
+      <para id="id19944518">In part 3, we present the linked lists, a data structure that students should know before learning the binary search tree. The fundamental types of linked lists are single-linked lists, double-linked lists, circularly-linked lists, linearly-linked lists. We describe these types of linked lists and integrated algorithms used to create, insert, delete, … their nodes.</para>
+      <para id="id19944556">In part 4, we study the recursion in computer programming. Recursion defines a function in terms of itself, it is largely used to solve problems such as divide and conquer, backtracking,… We give an overview about recursive functions, recursive algorithms, recursive programming and a comparison between recursion and iteration in programming. </para>
+      <para id="id19944592">Part 5 of this course gives an interesting data structure and its integrated algorithms, the binary search tree. We will focus on principal operations of binary search tree such as searching, insertion, deletion. Compared to linear data structures like linked lists and one dimensional arrays, which have only one logical means of traversal, tree structures can be traversed in many different ways. In this part, we present also three types of traversals: preoder, inorder, postorder.</para>
+      <para id="id19944622">In part 6, we examine basic sort algorithms. These algorithms are: Insertion sort, Quick sort, Bubble sort, Merge sort, Heap sort, Selection sort. With each algorithm, we describe the mechanism and their implementation. The comparison of the complexity of these algorithms will be introduced.</para>
+      <para id="id19944654">Part 7 presents problems relating graph. This part includes the graph theory, minimum spanning trees problems. We also give an algorithm to solve the shortest paths problems. Concerning algorithms of search in a graph, we introduce the breath-first search and depth-first search.</para>
+      <para id="id19944673">Finally, part 8 introduces hash tables, an type of data structure which are used to optimize the capacity of storage and the speed of searching, hash tables support the dictionary operations INSERT, DELETE, and SEARCH. In this part, we will also present how to choose convenient hash functions to distribute elements into hash tables and how to solve the collision problems in hashing.</para>
+    </section>
+    <section id="id-357252923418">
+      <title>Instructional Sequence</title>
+      <para id="id19944704">Unit 1. Introduction</para>
+      <para id="id19944709">Task 1: Read the following:</para>
+      <list id="id19944714" list-type="enumerated">
+        <item>Introduction to Data Structure and Algorithms </item>
+        <item>Textbook: The role of algorithms in computing (1.1 – 1.2)</item>
+        <item>Textbook: Introduction to data structures. pp. 197</item>
+      </list>
+      <para id="id19944740">Unit 2. Stack and Queue</para>
+      <para id="id19944744">Task 1: Read the following:</para>
+      <list id="id19944749" list-type="enumerated">
+        <item>Stack and Queue</item>
+        <item>Textbook: Stack and Queues pp.200</item>
+      </list>
+      <para id="id19944764">Task 2: Do the following exercises:</para>
+      <para id="id19944769">These exercises are NOT homework questions.</para>
+      <para id="id19944775">They are for helping you understand the materials of this unit</para>
+      <para id="id19944781">Textbook p.203 : from 10.1-1 to 10.1-4 all</para>
+      <para id="id19944788">Textbook p.204 : from 10.1-5 to 10.1-7 all</para>
+      <para id="id19433137">Unit 3. Link lists</para>
+      <para id="id19433145">Task 1: Read the following:</para>
+      <list id="id19433150" list-type="enumerated">
+        <item>Link lists</item>
+        <item>Textbook: Link lists pp.204</item>
+      </list>
+      <para id="id19433165">Task 2: Do the following exercises:</para>
+      <para id="id19433170">These exercises are NOT homework questions.</para>
+      <para id="id19433176">They are for helping you understand the materials of this unit</para>
+      <para id="id19433182">Textbook p.208 : from 10.2-2 to 10.2-6 all</para>
+      <para id="id19433189">Textbook p.209 : 10.2-7, 10.2-8 all</para>
+      <para id="id19433201">Unit 4. Recursion</para>
+      <para id="id19433205">Task 1: Read the following:</para>
+      <list id="id19433211" list-type="enumerated">
+        <item>Recursion</item>
+        <item>Textbook: The recursion-tree method pp.67</item>
+      </list>
+      <para id="id19433228">Task 2: Do the following exercises:</para>
+      <para id="id19433233">These exercises are NOT homework questions.</para>
+      <para id="id19433239">They are for helping you understand the materials of this unit</para>
+      <para id="id19433245">Textbook </para>
+      <para id="id19433252">Textbook </para>
+      <para id="id19433259">Unit 5. Binary search trees</para>
+      <para id="id19433271">Task 1: Read the following:</para>
+      <list id="id19433277" list-type="enumerated">
+        <item>Binary search trees</item>
+        <item>Textbook: </item>
+      </list>
+      <para id="id19433291">Task 2: Do the following exercises:</para>
+      <para id="id19433296">These exercises are NOT homework questions.</para>
+      <para id="id19433302">They are for helping you understand the materials of this unit</para>
+      <para id="id19433309">Textbook </para>
+      <para id="id19433315">Textbook </para>
+      <para id="id19433323">Unit 6. Sorting (part one)</para>
+      <para id="id19433339">Task 1: Read the following:</para>
+      <list id="id19433345" list-type="enumerated">
+        <item>Sorting ...</item>
+        <item/>
+      </list>
+      <para id="id19433355">Task 2: Do the following exercises:</para>
+      <para id="id19433359">These exercises are NOT homework questions.</para>
+      <para id="id19433365">They are for helping you understand the materials of this unit</para>
+      <para id="id19433372">Textbook </para>
+      <para id="id19433378">Textbook </para>
+      <para id="id19433386">Unit 7. Sorting (part two)</para>
+      <para id="id19433402">Task 1: Read the following:</para>
+      <para id="id19433413">Task 2: Do the following exercises:</para>
+      <para id="id19433418">These exercises are NOT homework questions.</para>
+      <para id="id19433424">They are for helping you understand the materials of this unit</para>
+      <para id="id19433431">Textbook </para>
+      <para id="id19433437">Textbook </para>
+      <para id="id19433445">Unit 8. Graphs (part one)</para>
+      <para id="id19433461">Task 1: Read the following:</para>
+      <list id="id19433467" list-type="enumerated">
+        <item/>
+        <item>Textbook: </item>
+      </list>
+      <para id="id19433477">Task 2: Do the following exercises:</para>
+      <para id="id19433481">These exercises are NOT homework questions.</para>
+      <para id="id19433487">They are for helping you understand the materials of this unit</para>
+      <para id="id19433494">Textbook </para>
+      <para id="id19433500">Textbook </para>
+      <para id="id19433508">Unit 9. Graphs (part two)</para>
+      <para id="id19433524">Task 1: Read the following:</para>
+      <list id="id19433530" list-type="enumerated">
+        <item/>
+        <item>Textbook: </item>
+      </list>
+      <para id="id19433540">Task 2: Do the following exercises:</para>
+      <para id="id19433545">These exercises are NOT homework questions.</para>
+      <para id="id19433551">They are for helping you understand the materials of this unit</para>
+      <para id="id19433557">Textbook </para>
+      <para id="id19433564">Textbook </para>
+      <para id="id19433571">Unit 10. Hashing (part one)</para>
+      <para id="id19433587">Task 1: Read the following:</para>
+      <list id="id19433593" list-type="enumerated">
+        <item/>
+        <item>Textbook: </item>
+      </list>
+      <para id="id19433603">Task 2: Do the following exercises:</para>
+      <para id="id19433608">These exercises are NOT homework questions.</para>
+      <para id="id19433614">They are for helping you understand the materials of this unit</para>
+      <para id="id19433620">Textbook </para>
+      <para id="id19433627">Textbook </para>
+      <para id="id19433634">Unit 11. Hashing (part two)</para>
+      <para id="id19433651">Task 1: Read the following:</para>
+      <list id="id19433656" list-type="enumerated">
+        <item/>
+        <item>Textbook: </item>
+      </list>
+      <para id="id19433666">Task 2: Do the following exercises:</para>
+      <para id="id19433671">These exercises are NOT homework questions.</para>
+      <para id="id19433677">They are for helping you understand the materials of this unit</para>
+      <para id="id19433683">Textbook </para>
+      <para id="id19433690">Textbook </para>
+    </section>
+    <section id="id-0866581593692">
+      <title>Timetable</title>
+      <table id="id19433706" summary="">
+        <tgroup cols="3">
+          <colspec colnum="1" colname="c1"/>
+          <colspec colnum="2" colname="c2"/>
+          <colspec colnum="3" colname="c3"/>
+          <tbody>
+            <row>
+              <entry>WEEK</entry>
+              <entry>TOPICS</entry>
+              <entry>ASSIGNMENTS</entry>
+            </row>
+            <row>
+              <entry>1</entry>
+              <entry>Introduction to Data Structure and Algorithms</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>2</entry>
+              <entry>Stack and Queue</entry>
+              <entry>Assignment problem 1 or Assignment problem 2</entry>
+            </row>
+            <row>
+              <entry>3</entry>
+              <entry>Linked lists </entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry>Submit homework 1 and 2</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>4</entry>
+              <entry>Recursion</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>5</entry>
+              <entry>Binary search trees</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry>Submit homework 3 and 4</entry>
+              <entry>Submit assignment problems 1 and 2</entry>
+            </row>
+            <row>
+              <entry>6</entry>
+              <entry>Sorting (part one)</entry>
+              <entry>Assignment problem 3 or Assignment problem 4</entry>
+            </row>
+            <row>
+              <entry>7</entry>
+              <entry>Middle exam (from week 2 to week 5)</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>8</entry>
+              <entry>Sorting (part two)</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry>Submit homework 5</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>9</entry>
+              <entry>Graphs (part one)</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>10</entry>
+              <entry>Graphs (part two)</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry>Submit homework 6</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>11</entry>
+              <entry>Hashing (part one)</entry>
+              <entry>Submit assignment problems 3 and 4</entry>
+            </row>
+            <row>
+              <entry>12</entry>
+              <entry>Hashing (part two)</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry/>
+              <entry>Submit homework 7</entry>
+              <entry/>
+            </row>
+            <row>
+              <entry>13</entry>
+              <entry>Final exam</entry>
+              <entry/>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    <section id="id-28197759443">
+      <title>Assignment problem</title>
+      <para id="id19434361">Assignment problem 1 - Depth First Search and The N-Queens Problem (4 weeks)</para>
+      <para id="id19434371"> (See assignment problem link for details)</para>
+      <para id="id19434388">Assignment problem 2 - Greedy Search and The N-Queens Problem (4 weeks)</para>
+      <para id="id19434398"> (See assignment problem link for details)</para>
+      <para id="id19434414">Assignment problem 3 - Finding a maximum weight matching in a weighted bipartite graph (6 weeks)</para>
+      <para id="id19434425"> (See assignment problem link for details)</para>
+      <para id="id19434442">Assignment problem 4 - Stable marriage problem (6 weeks)</para>
+      <para id="id19434451"> (See assignment problem link for details)</para>
+    </section>
+    <section id="id-0467627141509">
+      <title>Exercises </title>
+      <para id="id19434476">Homework 1. Stack and Queue – 7 exercises</para>
+      <para id="id19434486">(See exercises link for details)</para>
+      <para id="id19434500">Homework 2. Linked lists – 4 exercises</para>
+      <para id="id19434514">(See exercises link for details)</para>
+      <para id="id19434528">Homework 3. Designing algorithms – 3 exercises</para>
+      <para id="id19434538">(See exercises link for details)</para>
+      <para id="id19434552">Homework 4. Binary Search Trees – 20 exercises</para>
+      <para id="id19434563">(See exercises link for details)</para>
+      <para id="id19434577">Homework 5. Sorting – 19 exercises</para>
+      <para id="id19434591">(See exercises link for details)</para>
+      <para id="id19434605">Homework 6. Graphs – 5 exercises</para>
+      <para id="id19434619">(See exercises link for details)</para>
+      <para id="id19434634">Homework 7. Hashing – 12 exercises</para>
+      <para id="id19434647">(See exercises link for details)</para>
+    </section>
+  </content>
+</document>

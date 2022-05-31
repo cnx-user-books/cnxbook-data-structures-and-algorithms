@@ -1,0 +1,127 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Recursion</title>
+  <metadata>
+  <md:content-id>m29517</md:content-id><md:title>Recursion</md:title>
+  <md:abstract/>
+  <md:uuid>69c75c41-38cf-424c-bac6-8ebfc733e4a4</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-0756179470042">
+      <title>4. Recursion</title>
+      <para id="id3020168">(From Wikipedia, the free encyclopedia)</para>
+      <para id="id3020177">Recursion in computer programming defines a function in terms of itself. One example application of recursion is in <link url="http://en.wikipedia.org/wiki/Recursive_descent_parser">recursive descent parsers</link> for programming languages. The great advantage of recursion is that an infinite set of possible sentences, designs, or other data can be defined, parsed, or produced by a finite computer program.</para>
+      <section id="id-113888182117">
+        <title>4.1. Recursive algorithms</title>
+        <para id="id3020208">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3020218">A common method of simplification is to divide a problem into sub-problems of the same type. As a <link url="http://en.wikipedia.org/wiki/Computer_programming">computer programming</link> technique, this is called <link url="http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm">divide and conquer</link>, and it is key to the design of many important algorithms, as well as being a fundamental part of <link url="http://en.wikipedia.org/wiki/Dynamic_programming">dynamic programming</link>.</para>
+        <para id="id3413283">Virtually all <link url="http://en.wikipedia.org/wiki/Programming_language">programming languages</link> in use today allow the direct specification of recursive functions and procedures. When such a function is called, the computer (for most languages on most stack-based architectures) or the language implementation keeps track of the various instances of the function (on much architecture, by using a <link url="http://en.wikipedia.org/wiki/Call_stack">call stack</link>, although other methods may be used). Conversely, every recursive function can be transformed into an iterative function by using a <link url="http://en.wikipedia.org/wiki/Stack_%28data_structure%29">stack</link>.</para>
+        <para id="id3413329">Any function that can be evaluated by a computer can be expressed in terms of recursive functions without the use of <link url="http://en.wikipedia.org/wiki/Iteration">iteration</link>, in <link url="http://en.wikipedia.org/wiki/Continuation-passing_style">continuation-passing style</link>; and conversely any recursive function can be expressed in terms of iteration.</para>
+        <para id="id3413360">To make a very literal example out of this: If an unknown word is seen in a book, the reader can make a note of the current page number and put the note on a stack (which is empty so far). The reader can then look the new word up and, while reading on the subject, may find yet another unknown word. The page number of this word is also written down and put on top of the stack. At some point an article is read that does not require any explanation. The reader then returns to the previous page number and continues reading from there. This is repeated, sequentially removing the topmost note from the stack. Finally, the reader returns to the original book. This is a recursive approach.</para>
+        <para id="id3399069">Some languages designed for <link url="http://en.wikipedia.org/wiki/Logic_programming">logic programming</link> and <link url="http://en.wikipedia.org/wiki/Functional_programming">functional programming</link> provide recursion as the only means of repetition directly available to the programmer. Such languages generally make <link url="http://en.wikipedia.org/wiki/Tail_recursion">tail recursion</link> as efficient as iteration, letting programmers express other repetition structures (such as <link url="http://en.wikipedia.org/wiki/Scheme_%28programming_language%29">Scheme</link>'s map and for) in terms of recursion.</para>
+        <para id="id3413441">Recursion is deeply embedded in the <link url="http://en.wikipedia.org/wiki/Theory_of_computation">theory of computation</link>, with the theoretical equivalence of <link url="http://en.wikipedia.org/wiki/Mu-recursive_function">mu-recursive functions</link> and <link url="http://en.wikipedia.org/wiki/Turing_machine">Turing machines</link> at the foundation of ideas about the universality of the modern computer.</para>
+      </section>
+      <section id="id-89641267749">
+        <title>4.2. Recursive programming</title>
+        <para id="id3401717">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3401727">One basic form of recursive computer program is to define one or a few base cases, and then define rules to break down other cases into the base case. This analytic method is a common design for parsers for computer languages; see <link url="http://en.wikipedia.org/wiki/Recursive_descent_parser">Recursive descent parser</link>.</para>
+        <para id="id3401758">Another, similar form is generative, or synthetic, recursion. In this scheme, the computer uses rules to assemble cases, and starts by selecting a base case. This scheme is often used when a computer must design something automatically, such as code, a machine part or some other data.</para>
+        <para id="id3401771">One common example (using the <link url="http://en.wikipedia.org/wiki/Pascal_%28programming_language%29">Pascal</link> programming language, in this case) is the function used to calculate the <link url="http://en.wikipedia.org/wiki/Factorial">factorial</link> of an <link url="http://en.wikipedia.org/wiki/Integer">integer</link>:</para>
+        <para id="id3401811">function Factorial(x: integer): integer;</para>
+        <para id="id3401822">begin</para>
+        <para id="id3401827">if x &lt;= 1 then</para>
+        <para id="id3401849">Factorial := 1</para>
+        <para id="id3401856">else</para>
+        <para id="id3401870">Factorial := x * Factorial(x-1);</para>
+        <para id="id3401877">end</para>
+        <para id="id3401881">Here is the same function coded without recursion. Notice that this iterative solution requires two temporary variables; in general, recursive formulations of algorithms are often considered "cleaner" or "more elegant" than iterative formulations.</para>
+        <para id="id3401889">function Factorial(x: integer): integer;</para>
+        <para id="id3401901">var i, temp: integer;</para>
+        <para id="id3403496">begin</para>
+        <para id="id3403499">temp := 1;</para>
+        <para id="id3403506">for i := 1 to x do</para>
+        <para id="id3403537">temp := temp * i</para>
+        <para id="id3403544">Factorial := temp</para>
+        <para id="id3403551">end</para>
+        <para id="id3403555">Another comparison that even more clearly demonstrates the relative "elegance" of recursive functions is the <link url="http://en.wikipedia.org/wiki/Euclidean_algorithm">Euclidean algorithm</link>, used to compute the <link url="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</link> of two integers. Below is the algorithm with recursion, coded in <link url="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</link>:</para>
+        <para id="id3403598">int gcd(int x, int y)</para>
+        <para id="id3403603">{</para>
+        <para id="id3403607">if (y == 0)</para>
+        <para id="id3403614">return x;</para>
+        <para id="id3403622">else</para>
+        <para id="id3403629">return gcd(y, x % y);</para>
+        <para id="id3403637">}</para>
+        <para id="id3403641">Below is the same algorithm using an iterative approach:</para>
+        <para id="id3403646">int gcd(int x, int y)</para>
+        <para id="id3403651">{</para>
+        <para id="id3403655">while (y != 0) {</para>
+        <para id="id3403662">int r = x % y;</para>
+        <para id="id3403670">x = y;</para>
+        <para id="id3403677">y = r;</para>
+        <para id="id3403685">}</para>
+        <para id="id3403692">return x;</para>
+        <para id="id3403699">}</para>
+        <para id="id3403703">The iterative algorithm requires a temporary variable, and even given knowledge of the Euclidean algorithm it is more difficult to understand the process by simple inspection, although they are very similar in their steps.</para>
+        <para id="id3403711">Recursion versus iteration</para>
+        <para id="id3403727">In the "factorial" example the iterative implementation is likely to be slightly faster in practice than the recursive one. This is almost definite for the Euclidean Algorithm implementation. This result is typical, because iterative functions do not pay the "function-call overhead" as many times as recursive functions, and that overhead is relatively high in many languages. (Note that an even faster implementation for the factorial function on small integers is to use a <link url="http://en.wikipedia.org/wiki/Lookup_table">lookup table</link>.)</para>
+        <para id="id3403749">There are other types of problems whose solutions are inherently recursive, because they need to keep track of prior state. One example is <link url="http://en.wikipedia.org/wiki/Tree_traversal">tree traversal</link>; others include the <link url="http://en.wikipedia.org/wiki/Ackermann_function">Ackermann function</link> and <link url="http://en.wikipedia.org/wiki/Divide-and-conquer_algorithm">divide-and-conquer algorithms</link> such as <link url="http://en.wikipedia.org/wiki/Quicksort">Quicksort</link>. All of these algorithms can be implemented iteratively with the help of a <link url="http://en.wikipedia.org/wiki/Stack_%28data_structure%29">stack</link>, but the need for the stack arguably nullifies the advantages of the iterative solution.</para>
+        <para id="id3395754">Another possible reason for choosing an iterative rather than a recursive algorithm is that in today's programming languages, the stack space available to a thread is often much less than the space available in the heap, and recursive algorithms tend to require more stack space than iterative algorithms.</para>
+      </section>
+      <section id="id-380312316374">
+        <title>4.3. Recursive functions</title>
+        <para id="id3395770">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3395780">Functions whose domains can be recursively defined can be given recursive definitions patterned after the recursive definition of their domain.</para>
+        <para id="id3395786">The canonical example of a recursively defined function is the following definition of the <link url="http://en.wikipedia.org/wiki/Factorial">factorial</link> function f(n):</para>
+        <figure id="id3395824">
+          <media id="id1169026836319" alt=""><image src="../../media/Picture 47.png" mime-type="image/png" height="43" width="193"/></media>
+        </figure>
+        <para id="id3395849">Given this definition, also called a <link url="http://en.wikipedia.org/wiki/Recurrence_relation">recurrence relation</link>, we work out f(3) as follows:</para>
+        <para id="id3395875">f(3) = 3 * f(3 − 1)</para>
+        <para id="id3395895">= 3 * f(2)</para>
+        <para id="id3395912">= 3 * 2 * f(2 − 1)</para>
+        <para id="id3395929">= 3 * 2 * f(1)</para>
+        <para id="id3395946">= 3 * 2 * 1 * f(1 − 1)</para>
+        <para id="id3395963">= 3 * 2 * 1 * f(0)</para>
+        <para id="id3395979">= 3 * 2 * 1 * 1</para>
+        <para id="id3395987">= 6</para>
+      </section>
+      <section id="id-776354847112">
+        <title>4.4. Tail - recursive functions</title>
+        <para id="id3396003">(From Wikipedia, the free encyclopedia)</para>
+        <para id="id3396013">Tail-recursive functions are functions ending in a recursive call. For example, the following <link url="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</link> function to locate a value in a <link url="http://en.wikipedia.org/wiki/Linked_list">linked list</link> is tail-recursive, because the last thing it does is call itself:</para>
+        <para id="id3396044">struct node {</para>
+        <para id="id3396048">int data;</para>
+        <para id="id3396055">struct node *next;</para>
+        <para id="id3396062">};</para>
+        <para id="id3396067">struct node *find_value(struct node *head, int value)</para>
+        <para id="id3396072">{</para>
+        <para id="id3396076">if (head == NULL)</para>
+        <para id="id3396083">return NULL;</para>
+        <para id="id3396090">if (head-&gt;data == value)</para>
+        <para id="id3396099">return head;</para>
+        <para id="id3396106">return find_value(head-&gt;next, value);</para>
+        <para id="id3396114">}</para>
+        <para id="id3396118">The Euclidean Algorithm function, following a similar structure, is also tail-recursive. On the other hand, the Factorial function used as an example in the previous section is not tail-recursive, because after it receives the result of the recursive call, it must multiply that result by x before returning to its caller. That kind of function is sometimes called augmenting recursive.</para>
+        <para id="id3396151">The Factorial function can be turned into a tail-recursive function:</para>
+        <para id="id3396162">function Factorial(acc: integer, x: integer): integer;</para>
+        <para id="id3396175">begin</para>
+        <para id="id3396179">if x &lt;= 1 then</para>
+        <para id="id3396201">Factorial := acc</para>
+        <para id="id3396208">else</para>
+        <para id="id3396222">Factorial := Factorial(x * acc, x - 1);</para>
+        <para id="id3396230">end</para>
+        <para id="id3396234">Function should then be called by Factorial(1, x).</para>
+        <para id="id3396244">Notice that a single function may be both tail-recursive and augmenting recursive, such as this function to count the odd integers in a linked list:</para>
+        <para id="id3396251">int count_odds(struct node *head)</para>
+        <para id="id3396255">{</para>
+        <para id="id3396259">if (head == NULL)</para>
+        <para id="id3396266">return 0;</para>
+        <para id="id3396274">if (head-&gt;data % 2 == 1)</para>
+        <para id="id3396282">return count_odds(head-&gt;next) + 1; /* augmenting recursion */</para>
+        <para id="id3396293">return count_odds(head-&gt;next); /* tail recursion */</para>
+        <para id="id3396304">}</para>
+        <para id="id3396308">The significance of tail recursion is that when making a tail-recursive call, the caller's return position need not be saved on the <link url="http://en.wikipedia.org/wiki/Call_stack">call stack</link>; when the recursive call returns, it will branch directly on the previously saved return position. Therefore, on compilers which support tail-recursion optimization, tail recursion saves both space and time.</para>
+      </section>
+    </section>
+  </content>
+</document>
