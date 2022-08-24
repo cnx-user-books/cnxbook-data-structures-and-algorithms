@@ -1,3 +1,24 @@
-<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en" type="Course">  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">  <md:content-id>col10765</md:content-id>  <md:title>Data Structures and Algorithms</md:title>      <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License 3.0</md:license>  <md:language>en</md:language>            <md:uuid>3cf1f685-0500-4329-ac9a-4ad550d5ced2</md:uuid>
-<md:slug>data-structures-and-algorithms</md:slug>
-</metadata>  <col:content>          <col:module document="m29525"/>                            <col:module document="m29540"/>                            <col:module document="m29436"/>                            <col:module document="m29534"/>                            <col:module document="m29517"/>                            <col:module document="m29296"/>                            <col:module document="m29530"/>                            <col:module document="m29399"/>                            <col:module document="m29405"/>                            <col:module document="m29394"/>                            <col:module document="m29278"/>                    </col:content></col:collection>
+<?xml version="1.0"?>
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en" type="Course" authors="Nguyen Viet Ha, Truong Ninh Thuan, Vu Quang Dung">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10765</md:content-id>
+    <md:title>Data Structures and Algorithms</md:title>
+    <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License 3.0</md:license>
+    <md:language>en</md:language>
+    <md:uuid>3cf1f685-0500-4329-ac9a-4ad550d5ced2</md:uuid>
+    <md:slug>data-structures-and-algorithms</md:slug>
+  </metadata>
+  <col:content>
+    <col:module document="m29525"/>
+    <col:module document="m29540"/>
+    <col:module document="m29436"/>
+    <col:module document="m29534"/>
+    <col:module document="m29517"/>
+    <col:module document="m29296"/>
+    <col:module document="m29530"/>
+    <col:module document="m29399"/>
+    <col:module document="m29405"/>
+    <col:module document="m29394"/>
+    <col:module document="m29278"/>
+  </col:content>
+</col:collection>
